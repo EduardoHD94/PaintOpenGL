@@ -364,22 +364,23 @@ void Render::draw_toolbox()
 	glBegin(GL_QUADS);                            
 		glVertex2f(2, wh-(wh/20)-1);
 		glVertex2f(wh/10-2, wh-(wh/20)-1);
-		glVertex2f(wh/10-2,14*wh/20);
-		glVertex2f(2, 14*wh/20);
+		glVertex2f(wh/10-2,13*wh/20);
+		glVertex2f(2, 13*wh/20);
 	glEnd();
 
+	
 	set_color(0, 0, 0);
 	glBegin(GL_LINE_LOOP);                            
 		glVertex2f(2, wh-(wh/20)-1);
 		glVertex2f(wh/10-2, wh-(wh/20)-1);
-		glVertex2f(wh/10-2,14*wh/20);
-		glVertex2f(2, 14*wh/20);
+		glVertex2f(wh/10-2,13*wh/20);
+		glVertex2f(2, 13*wh/20);
 	glEnd();
 
 	set_color(0, 0, 0);
 	glBegin(GL_LINES);
 		glVertex2f(wh/20, wh-(wh/20)-1);
-		glVertex2f(wh/20, 14*wh/20);
+		glVertex2f(wh/20, 13*wh/20);
 
 		glVertex2f(2, 18*wh/20);
 		glVertex2f(wh/10-2, 18*wh/20);
@@ -389,12 +390,14 @@ void Render::draw_toolbox()
 
 		glVertex2f(2, 16*wh/20);
 		glVertex2f(wh/10-2, 16*wh/20);
-
+	
 		glVertex2f(2, 15*wh/20);
 		glVertex2f(wh/10-2, 15*wh/20);
 
-
+		glVertex2f(2, 14*wh/20);
+		glVertex2f(wh/10-2, 14*wh/20);
 	glEnd();
+	
 }
 
 void Render::draw_pixel(float x, float y)                           
@@ -443,8 +446,11 @@ void Render::draw_btn_line()
 	glEnd();
 }
 
-void Render::draw_btn_circle(float p, float q, float r)
+void Render::draw_btn_circle()
 {
+	float p = 9*wh/120;
+	float q = 16.5*wh/20;
+	float r = wh/60;
 	int d = 1-(int)r;
 	int x = 0;
 	int y = (int)r;
@@ -572,8 +578,8 @@ void Render::draw_btn_eraser()
 void Render::draw_btn_brush()
 {
 	glPointSize(1);
+
 	set_color(242, 110, 68);
-	//set_color(102, 25.5, 25.5);
 	glBegin(GL_QUADS);                                 
 		glVertex2f(7*wh/120, 14.45*wh/20);
 		glVertex2f(10*wh/120, 14.45*wh/20);
@@ -643,4 +649,38 @@ void Render::draw_btn_air_brush()
 			glVertex2f(wh/120+j,15.8*wh/20-k);
 		glEnd();
     }
+}
+
+void Render::draw_btn_increment()
+{
+	set_color(0, 0, 0);
+	glBegin(GL_LINES);                              
+		glVertex2f(3.3*wh/120, 13.2*wh/20);
+		glVertex2f(3.3*wh/120, 13.85*wh/20);
+	glEnd();
+
+	set_color(0, 0, 0);
+	glBegin(GL_LINES);                              
+		glVertex2f(1.3*wh/120, 13.5*wh/20);
+		glVertex2f(5.3*wh/120, 13.5*wh/20);
+	glEnd();
+}
+
+void Render::draw_btn_decrement()
+{
+	set_color(0, 0, 0);
+	glBegin(GL_LINES);                              
+		glVertex2f(7.3*wh/120, 13.5*wh/20);
+		glVertex2f(10.5*wh/120, 13.5*wh/20);
+	glEnd();
+}
+
+void Render::increment_size()
+{
+	size++;
+}
+
+void Render::decrement_size()
+{
+	size--;
 }

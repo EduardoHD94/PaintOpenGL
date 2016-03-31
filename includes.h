@@ -57,12 +57,10 @@ void eraser(int x, int y)  /* ERASER function */
 	}
 }
 
-void paint(int x, int y) /* PAINT BRUSH function */
+/* PAINT BRUSH function */
+void paint(int x, int y) 
 {
 	y=render->wh-y;
-
-
-
 	if(x>render->wh/10+1 && render->wh/10<y && y<render->wh-31)
 	{
 			glBegin(GL_POLYGON);
@@ -75,7 +73,8 @@ void paint(int x, int y) /* PAINT BRUSH function */
 	}
 }
 
-void drawpoint(int x, int y)        /* to draw point */
+/* to draw point */
+void drawpoint(int x, int y)       
 {
 	y=render->wh-y;
 
@@ -89,7 +88,8 @@ void drawpoint(int x, int y)        /* to draw point */
 	}
 }
 
-void myReshape(GLsizei w, GLsizei h) /* RESHAPE FUNCTION */
+/* RESHAPE FUNCTION */
+void myReshape(GLsizei w, GLsizei h) 
 {
     glMatrixMode(GL_PROJECTION);
    	glLoadIdentity();
@@ -135,24 +135,17 @@ void display()
 	render->draw_btn_pencil();
 	render->draw_btn_eraser();
 	render->draw_btn_pencil2();
-	render->draw_btn_circle(9*render->wh/120, 16.5*render->wh/20, render->wh/60);		/* to draw CIRCLE OPTION on tool bar */
+	render->draw_btn_circle();		
     render->draw_btn_air_brush();
 	render->draw_btn_fill_color();
 	render->draw_btn_brush();
+	render->draw_btn_increment();
+	render->draw_btn_decrement();
 	render->set_font(GLUT_BITMAP_HELVETICA_12);
-	//render->set_color(0, 0, 1);
-	//render->drawstring(26*render->wh/60,render->wh/20,0.0,"",0,0,1);
-//	render->set_color(0, 0, 0);
 	render->drawstring(6*render->wh/60, 58*render->wh/60, 0.0, "Open",0,0,0);
 	render->drawstring(12*render->wh/60, 58*render->wh/60, 0.0, "Save",0,0,0);
 	render->drawstring(18*render->wh/60, 58*render->wh/60, 0.0, "Clear",0,0,0);
-
 	glFlush();
-	//glReadBuffer(GL_FRONT);
-	//glReadPixels(render->wh/10+2, render->wh/10, render->ww-render->wh/10-2, render->wh-render->wh/10-render->wh/20-1,GL_RGB, GL_UNSIGNED_BYTE, image); /* to read pixels from buffer to memory */
-	//posx=render->wh/10+2;
-	//posy=render->wh/10;
-	//}
 
 }
 
@@ -169,12 +162,6 @@ void myMouse(int btn, int state, int x, int y)
 
 	if(btn==GLUT_LEFT_BUTTON && state==GLUT_DOWN)
 	{
-		/* to SELECT A  COLOR */
-		if(wel==1)
-		{
-			wel=2;
-			display();
-		}
 
 		if(6*render->wh/60<x && x<8*render->wh/60 && render->wh/60<render->wh-y && render->wh-y<render->wh/20)
 			render->set_color(0, 0, 0);
@@ -231,20 +218,17 @@ void myMouse(int btn, int state, int x, int y)
 			 render->set_color(152, 102, 41);
 
 
-		                /*end select color */
+		/*end select color */
 
+		/* to select render->whAT TO  DRAW */
 
-	/* to select render->whAT TO  DRAW */
-
-		 /* selected option is PENCIL*/
+		/* selected option is PENCIL*/
 		if(2<x && x<render->wh/20 && 18*render->wh/20<render->wh-y && render->wh-y<render->wh-(render->wh/20)-1)                   
 			draw=1;
-
 
 		/* selected option is LINE */
 		else if(render->wh/20<x && x<render->wh/10-2 && 18*render->wh/20<render->wh-y && render->wh-y<render->wh-(render->wh/20)-1)       
 		{
-
 			render->reset();
 			draw=2;
 		}
@@ -308,15 +292,6 @@ void myMouse(int btn, int state, int x, int y)
 
 		 if(draw==1)         /* to draw using a  PENCIL  */
 		{
-			if(pol==1)
-			{
-				m++;
-				render->a[m][0]='$';
-				render->a[m][1]='$';
-
-				pol=0;
-			}
-
 			if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
 				glutMotionFunc(drawpoint);
 
@@ -324,14 +299,6 @@ void myMouse(int btn, int state, int x, int y)
 
 		 else if(draw==2)  /* to draw a LINE */
 		{
-			if(pol==1)
-			{
-				m++;
-				render->a[m][0]='$';
-				render->a[m][1]='$';
-				pol=0;
-			}
-
 
 			if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
 			{
@@ -361,13 +328,6 @@ void myMouse(int btn, int state, int x, int y)
 
 		else if(draw==3)  /* to draw a TRIANGLE */
 		{
-			if(pol==1)
-			{
-				m++;
-				render->a[m][0]='$';
-				render->a[m][1]='$';
-				pol=0;
-			}
 			if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
 			{
 				render->drawpoint(x, y);
@@ -412,13 +372,7 @@ void myMouse(int btn, int state, int x, int y)
 		/* to draw a RECTANGLE */
 		else if(draw==4)  
 		{
-			if(pol==1)
-			{
-				m++;
-				render->a[m][0]='$';
-				render->a[m][1]='$';
-				pol=0;
-			}
+
 			if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
 			{
 				render->drawpoint(x, y);
@@ -462,7 +416,7 @@ void myMouse(int btn, int state, int x, int y)
 		/* to draw a POLYGON */
 		else if(draw==5)  
 		{
-			pol=1;
+			//pol=1;
 			if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
 			{
 				render->drawpoint(x, y);
@@ -491,14 +445,6 @@ void myMouse(int btn, int state, int x, int y)
 		/* to draw a CIRCLE */
 		else if(draw==6)   
 		{
-			if(pol==1)
-			{
-				m++;
-				render->a[m][0]='$';
-				render->a[m][1]='$';
-
-				pol=0;
-			}
 
 			if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
 			{
@@ -531,14 +477,6 @@ void myMouse(int btn, int state, int x, int y)
 		/* to draw a AIRBRUSH */
 		else if(draw==7)  
 		{
-			if(pol==1)
-			{
-				m++;
-				render->a[m][0]='$';
-				render->a[m][1]='$';
-				pol=0;
-			}
-
 			if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
 			{
 				for(i=0;i<60;i++)
@@ -553,14 +491,6 @@ void myMouse(int btn, int state, int x, int y)
 		/* to FILL A POLYGON with the selected color */
 		else if(draw==9)  
 		{
-			if(pol==1)
-			{
-				m++;
-				render->a[m][0]='$';
-				render->a[m][1]='$';
-				pol=0;
-			}
-
 			if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
 			{
 				y=render->wh-y;
@@ -620,29 +550,12 @@ void myMouse(int btn, int state, int x, int y)
 		/* to ERASE */
 		if(draw==8)
 		{
-			if(pol==1)
-			{
-				m++;
-				render->a[m][0]='$';
-				render->a[m][1]='$';
-				pol=0;
-			}
-
 			if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
 				glutMotionFunc(eraser);
 		}
 
 		else if(draw==10)
 		{
-			if(pol==1)
-			{
-				m++;
-				render->a[m][0]='$';
-				render->a[m][1]='$';
-
-				pol=0;
-			}
-
 			if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
 				glutMotionFunc(paint);
 

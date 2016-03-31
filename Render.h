@@ -71,6 +71,12 @@ public:
 	void draw_btn_brush();
 	void draw_btn_fill_color();
 	void draw_btn_air_brush();
+	void draw_btn_increment();
+	void draw_btn_decrement();
+
+	void increment_size();
+	void decrement_size();
+
 	//TEXT
 	void drawstring(float,float,float,string,float,float,float);
 
