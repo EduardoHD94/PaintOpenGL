@@ -375,37 +375,15 @@ void myMouse(int btn, int state, int x, int y)
 			if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
 			{
 				render->drawpoint(x, y);
-				render->a2=render->a1;
-				render->b2=render->b1;
-				render->a1=x;
-				render->b1=render->wh-y;
-                if(render->a1>render->wh/10+1 && render->wh/10<render->b1 && render->b1<render->wh-31)
+				render->a2 = render->a1;
+				render->b2 = render->b1;
+				render->a1 = x;
+				render->b1 = render->wh-y;
+                if(render->a1 > render->wh/10+1 && render->wh/10 < render->b1 && render->b1 < render->wh-31)
 				{
-					if(render->a2>render->wh/10+1 && render->wh/10<render->b2 && render->b2<render->wh-31)
+					if(render->a2 > render->wh/10+1 && render->wh/10 < render->b2 && render->b2 < render->wh-31)
 					{
-						glLineWidth(render->size);
-						glBegin(GL_LINE_LOOP);
-							glVertex2f(render->a2, render->b2);
-							glVertex2f(render->a1, render->b2);
-							glVertex2f(render->a1, render->b1);
-							glVertex2f(render->a2, render->b1);
-						glEnd();
-						m++;
-						render->a[m][0]=render->a2;
-						render->a[m][1]=render->b2;
-						m++;
-						render->a[m][0]=render->a1;
-						render->a[m][1]=render->b2;
-						m++;
-						render->a[m][0]=render->a1;
-						render->a[m][1]=render->b1;
-						m++;
-						render->a[m][0]=render->a2;
-						render->a[m][1]=render->b1;
-						m++;
-						render->a[m][0]='$';
-						render->a[m][1]='$';
-						render->reset();
+						render->draw_rectangle(render->a1,render->a2,render->b1,render->b2,m);
 					}
 				}
 			}

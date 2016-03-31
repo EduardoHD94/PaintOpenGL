@@ -83,6 +83,7 @@ public:
 
 	void draw_lines(float,float,bool);
 	void draw_triangle(float,float,float,float,float,float,int);
+	void draw_rectangle(float,float,float,float,int);
 
 
 	 /* to draw the COLOR PALETTE */

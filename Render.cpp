@@ -733,3 +733,30 @@ void Render::draw_triangle(float a1, float a2, float a3, float b1, float b2, flo
 	a[m][1]='$';
 	reset();
 }
+
+void Render::draw_rectangle(float a1, float a2, float b1, float b2, int m)
+{
+	glLineWidth(size);
+	glBegin(GL_LINE_LOOP);
+		glVertex2f(a2, b2);
+		glVertex2f(a1, b2);
+		glVertex2f(a1, b1);
+		glVertex2f(a2, b1);
+	glEnd();
+	m++;
+	a[m][0]=a2;
+	a[m][1]=b2;
+	m++;
+	a[m][0]=a1;
+	a[m][1]=b2;
+	m++;
+	a[m][0]=a1;
+	a[m][1]=b1;
+	m++;
+	a[m][0]=a2;
+	a[m][1]=b1;
+	m++;
+	a[m][0]='$';
+	a[m][1]='$';
+	reset();
+}
