@@ -9,7 +9,7 @@ int main(int argc, char **argv)
 	glutCreateWindow("Editor de Graficos");	
 	glutReshapeFunc(myReshape);
 	glutDisplayFunc(display);
-	glutMouseFunc(myMouse);
+	glutMouseFunc(mouse);
 	render->loop();
     return 0;
 }
