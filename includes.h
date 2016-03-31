@@ -150,46 +150,35 @@ void myMouse(int btn, int state, int x, int y)
 	if(btn==GLUT_LEFT_BUTTON && state==GLUT_DOWN)
 	{
 		/* to SELECT A  COLOR */
-
-
 		if(wel==1)
 		{
 			wel=2;
 			display();
 		}
 
-
 		if(6*render->wh/60<x && x<8*render->wh/60 && render->wh/60<render->wh-y && render->wh-y<render->wh/20)
 			render->set_color(0, 0, 0);
-
 
 		else if(6*render->wh/60<x && x<8*render->wh/60 && render->wh/20<render->wh-y && render->wh-y<render->wh/12)
 			render->set_color(255, 255, 255);
 
-
 		else if(8*render->wh/60<x && x<10*render->wh/60 && render->wh/60<render->wh-y && render->wh-y<render->wh/20)
 	         render->set_color(239, 223, 132);
-
 
 		else if(8*render->wh/60<x && x<10*render->wh/60 && render->wh/20<render->wh-y && render->wh-y<render->wh/12)
 		     render->set_color(232, 99, 113);
 
-
 		else if(10*render->wh/60<x && x<12*render->wh/60 && render->wh/60<render->wh-y && render->wh-y<render->wh/20)
 		     render->set_color(80, 186, 188);
-
 
 		else if(10*render->wh/60<x && x<12*render->wh/60 && render->wh/20<render->wh-y && render->wh-y<render->wh/12)
 		     render->set_color(161, 185, 196);
 
-
 		else if(12*render->wh/60<x && x<14*render->wh/60 && render->wh/60<render->wh-y && render->wh-y<render->wh/20)
 			 render->set_color(241, 144, 86);
 
-
 		else if(12*render->wh/60<x && x<14*render->wh/60 && render->wh/20<render->wh-y && render->wh-y<render->wh/12)
 		     render->set_color(180, 231, 254);
-
 
 		else if(14*render->wh/60<x && x<16*render->wh/60 && render->wh/60<render->wh-y && render->wh-y<render->wh/20)
 			 render->set_color(203, 143, 244);
@@ -215,10 +204,8 @@ void myMouse(int btn, int state, int x, int y)
 		else if(20*render->wh/60<x && x<22*render->wh/60 && render->wh/20<render->wh-y && render->wh-y<render->wh/12)
 			 render->set_color(248, 214, 139);
 
-
 		else if(22*render->wh/60<x && x<24*render->wh/60 && render->wh/60<render->wh-y && render->wh-y<render->wh/20)
 			 render->set_color(255, 171, 69);
-
 
 		else if(22*render->wh/60<x && x<24*render->wh/60 && render->wh/20<render->wh-y && render->wh-y<render->wh/12)
 			 render->set_color(152, 102, 41);
@@ -227,418 +214,336 @@ void myMouse(int btn, int state, int x, int y)
 		                /*end select color */
 
 
-		             /* to select render->whAT TO  DRAW */
+	/* to select render->whAT TO  DRAW */
 
-		if(2<x && x<render->wh/20 && 18*render->wh/20<render->wh-y && render->wh-y<render->wh-(render->wh/20)-1)                    /* selected option is PENCIL*/
+		 /* selected option is PENCIL*/
+		if(2<x && x<render->wh/20 && 18*render->wh/20<render->wh-y && render->wh-y<render->wh-(render->wh/20)-1)                   
 			draw=1;
 
 
-		else if(render->wh/20<x && x<render->wh/10-2 && 18*render->wh/20<render->wh-y && render->wh-y<render->wh-(render->wh/20)-1)         /* selected option is LINE */
+		/* selected option is LINE */
+		else if(render->wh/20<x && x<render->wh/10-2 && 18*render->wh/20<render->wh-y && render->wh-y<render->wh-(render->wh/20)-1)       
 		{
 
 			render->reset();
 			draw=2;
 		}
 
-
-		else if(2<x && x<render->wh/20 && 17*render->wh/20<render->wh-y && render->wh-y<18*render->wh/20)                    /* selected option is TRIANGLE */
-
+		/* selected option is TRIANGLE */
+		else if(2<x && x<render->wh/20 && 17*render->wh/20<render->wh-y && render->wh-y<18*render->wh/20)                    
 		{
 			render->reset();
 			draw=3;
 		}
 
-
-		else if(render->wh/20<x && x<render->wh/10-2 && 17*render->wh/20<render->wh-y && render->wh-y<18*render->wh/20)               /* selected option is RECTANGLE */
+		/* selected option is RECTANGLE */
+		else if(render->wh/20<x && x<render->wh/10-2 && 17*render->wh/20<render->wh-y && render->wh-y<18*render->wh/20)               
 		{
-
 			render->reset();
 			draw=4;
 		}
 
-
-		else if(2<x && x<render->wh/20 && 16*render->wh/20<render->wh-y && render->wh-y<17*render->wh/20)                     /* selected option is POLYGON */
+		/* selected option is POLYGON */
+		else if(2<x && x<render->wh/20 && 16*render->wh/20<render->wh-y && render->wh-y<17*render->wh/20)                   
 		{
-
 			render->reset();
 			draw=5;
 		}
 
-
-		else if(render->wh/20<x && x<render->wh/10-2 && 16*render->wh/20<render->wh-y && render->wh-y<17*render->wh/20)               /* selected option is CIRCLE */
+		/* selected option is CIRCLE */
+		else if(render->wh/20<x && x<render->wh/10-2 && 16*render->wh/20<render->wh-y && render->wh-y<17*render->wh/20)           
 		{
 			render->reset();
 			draw=6;
 		}
 
-
-		else if(2<x && x<render->wh/20 && 15*render->wh/20<render->wh-y && render->wh-y<16*render->wh/20)                      /* selected option is AIRBRUSH */
+		/* selected option is AIRBRUSH */
+		else if(2<x && x<render->wh/20 && 15*render->wh/20<render->wh-y && render->wh-y<16*render->wh/20)                 
 		{
-
 			render->reset();
 			draw=7;
 		}
 
-
-		else if(render->wh/20<x && x<render->wh/10-2 && 15*render->wh/20<render->wh-y && render->wh-y<16*render->wh/20)                /* selected option is ERASER */
+		 /* selected option is ERASER */
+		else if(render->wh/20<x && x<render->wh/10-2 && 15*render->wh/20<render->wh-y && render->wh-y<16*render->wh/20)               
 		{
 			render->reset();
 			draw=8;
 		}
 
-
-
-		else if(2<x && x<render->wh/20 && 14*render->wh/20<render->wh-y && render->wh-y<15*render->wh/20)                      /* selected option is COLOR FILL */
+		  /* selected option is COLOR FILL */
+		else if(2<x && x<render->wh/20 && 14*render->wh/20<render->wh-y && render->wh-y<15*render->wh/20)                    
 		{
 
 			render->reset();
 			draw=9;
 		}
 
-
-		else if(render->wh/20<x && x<render->wh/10-2 && 14*render->wh/20<render->wh-y && render->wh-y<15*render->wh/20)                /* selected option is PAINT BRUSH */
+		/* selected option is PAINT BRUSH */
+		else if(render->wh/20<x && x<render->wh/10-2 && 14*render->wh/20<render->wh-y && render->wh-y<15*render->wh/20)            
 		{
 			render->reset();
 			draw=10;
 		}
 
-
-
-
-
 		 if(draw==1)         /* to draw using a  PENCIL  */
+		{
+			if(pol==1)
 			{
-				if(pol==1)
-				{
-					m++;
-					render->a[m][0]='$';
-					render->a[m][1]='$';
+				m++;
+				render->a[m][0]='$';
+				render->a[m][1]='$';
 
-					pol=0;
-				}
-
-				if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
-					glutMotionFunc(drawpoint);
-
+				pol=0;
 			}
 
+			if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
+				glutMotionFunc(drawpoint);
+
+		}
 
 		 else if(draw==2)  /* to draw a LINE */
 		{
 			if(pol==1)
-				{
-					m++;
-					render->a[m][0]='$';
-					render->a[m][1]='$';
-
-					pol=0;
-				}
+			{
+				m++;
+				render->a[m][0]='$';
+				render->a[m][1]='$';
+				pol=0;
+			}
 
 
 			if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
 			{
-					render->drawpoint(x, y);
+				render->drawpoint(x, y);
+				render->a2=render->a1;
+				render->b2=render->b1;
 
-					render->a2=render->a1;
-					render->b2=render->b1;
+				render->a1=x;
+				render->b1=render->wh-y;
 
-					render->a1=x;
-					render->b1=render->wh-y;
-
-
-					if(render->a1>render->wh/10+1 && render->wh/10<render->b1 && render->b1<render->wh-31)
+				if(render->a1>render->wh/10+1 && render->wh/10<render->b1 && render->b1<render->wh-31)
+				{
+					if(render->a2>render->wh/10+1 && render->wh/10<render->b2 && render->b2<render->wh-31)
 					{
-						if(render->a2>render->wh/10+1 && render->wh/10<render->b2 && render->b2<render->wh-31)
-						{
-							glLineWidth(render->size);
-							glBegin(GL_LINES);
-								glVertex2f(render->a2, render->b2);
-								glVertex2f(render->a1, render->b1);
-							glEnd();
-
-							render->reset();
-
-						}
+						glLineWidth(render->size);
+						glBegin(GL_LINES);
+							glVertex2f(render->a2, render->b2);
+							glVertex2f(render->a1, render->b1);
+						glEnd();
+						render->reset();
 					}
+				}
 			}
 
 		}
 
 
 		else if(draw==3)  /* to draw a TRIANGLE */
-		 {
+		{
 			if(pol==1)
-				{
-					m++;
-					render->a[m][0]='$';
-					render->a[m][1]='$';
-
-					pol=0;
-				}
-
-
-
+			{
+				m++;
+				render->a[m][0]='$';
+				render->a[m][1]='$';
+				pol=0;
+			}
 			if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
+			{
+				render->drawpoint(x, y);
+				render->a3=render->a2;
+				render->b3=render->b2;
+				render->a2=render->a1;
+				render->b2=render->b1;
+				render->a1=x;
+				render->b1=render->wh-y;
+				if(render->a1>render->wh/10+1 && render->wh/10<render->b1 && render->b1<render->wh-31)
 				{
-					render->drawpoint(x, y);
-
-
-					render->a3=render->a2;
-					render->b3=render->b2;
-
-					render->a2=render->a1;
-					render->b2=render->b1;
-
-					render->a1=x;
-					render->b1=render->wh-y;
-
-
-
-
-
-					if(render->a1>render->wh/10+1 && render->wh/10<render->b1 && render->b1<render->wh-31)
+					if(render->a2>render->wh/10+1 && render->wh/10<render->b2 && render->b2<render->wh-31)
 					{
-						if(render->a2>render->wh/10+1 && render->wh/10<render->b2 && render->b2<render->wh-31)
+						if(render->a3>render->wh/10+1 && render->wh/10<render->b3 && render->b3<render->wh-31)
 						{
-							if(render->a3>render->wh/10+1 && render->wh/10<render->b3 && render->b3<render->wh-31)
-
-							{
-									glLineWidth(render->size);
-								glBegin(GL_LINE_LOOP);
-									glVertex2f(render->a3, render->b3);
-									glVertex2f(render->a2, render->b2);
-									glVertex2f(render->a1, render->b1);
-								glEnd();
-
+							glLineWidth(render->size);
+							glBegin(GL_LINE_LOOP);
+								glVertex2f(render->a3, render->b3);
+								glVertex2f(render->a2, render->b2);
+								glVertex2f(render->a1, render->b1);
+							glEnd();
 							m++;
 							render->a[m][0]=render->a3;
 							render->a[m][1]=render->b3;
-
 							m++;
 							render->a[m][0]=render->a2;
 							render->a[m][1]=render->b2;
-
 							m++;
 							render->a[m][0]=render->a1;
 							render->a[m][1]=render->b1;
-
 							m++;
 							render->a[m][0]='$';
 							render->a[m][1]='$';
-
-
-
-
-
-
 							render->reset();
-							}
 						}
 					}
 				}
-
-		}
-
-
-			else if(draw==4)  /* to draw a RECTANGLE */
-		 {
-
-				if(pol==1)
-				{
-					m++;
-					render->a[m][0]='$';
-					render->a[m][1]='$';
-
-					pol=0;
-				}
-
-				if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
-				{
-					render->drawpoint(x, y);
-
-					render->a2=render->a1;
-					render->b2=render->b1;
-
-					render->a1=x;
-					render->b1=render->wh-y;
-
-
-                  if(render->a1>render->wh/10+1 && render->wh/10<render->b1 && render->b1<render->wh-31)
-					{
-						if(render->a2>render->wh/10+1 && render->wh/10<render->b2 && render->b2<render->wh-31)
-						{
-								glLineWidth(render->size);
-							glBegin(GL_LINE_LOOP);
-								glVertex2f(render->a2, render->b2);
-								glVertex2f(render->a1, render->b2);
-								glVertex2f(render->a1, render->b1);
-								glVertex2f(render->a2, render->b1);
-							glEnd();
-
-
-							m++;
-							render->a[m][0]=render->a2;
-							render->a[m][1]=render->b2;
-
-							m++;
-							render->a[m][0]=render->a1;
-							render->a[m][1]=render->b2;
-
-							m++;
-							render->a[m][0]=render->a1;
-							render->a[m][1]=render->b1;
-
-
-							m++;
-							render->a[m][0]=render->a2;
-							render->a[m][1]=render->b1;
-
-							m++;
-							render->a[m][0]='$';
-							render->a[m][1]='$';
-
-
-							render->reset();
-
-						}
-					}
-				}
-
-		}
-
-
-		else if(draw==5)  /* to draw a POLYGON */
-			{
-
-				pol=1;
-				if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
-				{
-					render->drawpoint(x, y);
-
-					render->a2=render->a1;
-					render->b2=render->b1;
-
-					render->a1=x;
-					render->b1=render->wh-y;
-
-					m++;
-					render->a[m][0]=x;
-					render->a[m][1]=render->wh-y;
-
-
-
-
-					if(render->a1>render->wh/10+1 && render->wh/10<render->b1 && render->b1<render->wh-31)
-					{
-						if(render->a2>render->wh/10+1 && render->wh/10<render->b2 && render->b2<render->wh-31)
-						{
-								glLineWidth(render->size);
-							glBegin(GL_LINES);
-								glVertex2f(render->a2, render->b2);
-								glVertex2f(render->a1, render->b1);
-							glEnd();
-						}
-					}
-
-				}
-
-
-
-		}
-
-		else if(draw==6)    /* to draw a CIRCLE */
-		{
-			if(pol==1)
-				{
-					m++;
-					render->a[m][0]='$';
-					render->a[m][1]='$';
-
-					pol=0;
-				}
-
-
-			if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
-			{
-					render->drawpoint(x, y);
-
-					render->a2=render->a1;
-					render->b2=render->b1;
-
-					render->a1=x;
-					render->b1=render->wh-y;
-
-					if(render->a1>render->wh/10+1 && render->wh/10<render->b1 && render->b1<render->wh-31)
-					{
-						if(render->a2>render->wh/10+1 && render->wh/10<render->b2 && render->b2<render->wh-31)
-						{
-							r=sqrt((render->a1-render->a2)*(render->a1-render->a2)+(render->b1-render->b2)*(render->b1-render->b2));
-							render->draw_circle(render->a2, render->b2, r);
-
-							n++;
-							render->b[n][0]=render->a2;
-							render->b[n][1]=render->b2;
-
-							n++;
-							render->b[n][0]=render->a1;
-							render->b[n][1]=render->b1;
-
-							n++;
-							render->b[n][0]='$';
-							render->b[n][1]='$';
-
-							render->reset();
-
-						}
-					}
 			}
 		}
 
 
-
-		else if(draw==7)  /* to draw a AIRBRUSH */
+		/* to draw a RECTANGLE */
+		else if(draw==4)  
 		{
 			if(pol==1)
-				{
-					m++;
-					render->a[m][0]='$';
-					render->a[m][1]='$';
-
-					pol=0;
-				}
-
+			{
+				m++;
+				render->a[m][0]='$';
+				render->a[m][1]='$';
+				pol=0;
+			}
 			if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
-			 {
-				 for(i=0;i<60;i++)
-				 {
-                     j=rand()%17;
-					 k=rand()%17;
-					 render->drawpoint(x+j,y+k);
-                 }
-
-
-
-			 }
+			{
+				render->drawpoint(x, y);
+				render->a2=render->a1;
+				render->b2=render->b1;
+				render->a1=x;
+				render->b1=render->wh-y;
+                if(render->a1>render->wh/10+1 && render->wh/10<render->b1 && render->b1<render->wh-31)
+				{
+					if(render->a2>render->wh/10+1 && render->wh/10<render->b2 && render->b2<render->wh-31)
+					{
+						glLineWidth(render->size);
+						glBegin(GL_LINE_LOOP);
+							glVertex2f(render->a2, render->b2);
+							glVertex2f(render->a1, render->b2);
+							glVertex2f(render->a1, render->b1);
+							glVertex2f(render->a2, render->b1);
+						glEnd();
+						m++;
+						render->a[m][0]=render->a2;
+						render->a[m][1]=render->b2;
+						m++;
+						render->a[m][0]=render->a1;
+						render->a[m][1]=render->b2;
+						m++;
+						render->a[m][0]=render->a1;
+						render->a[m][1]=render->b1;
+						m++;
+						render->a[m][0]=render->a2;
+						render->a[m][1]=render->b1;
+						m++;
+						render->a[m][0]='$';
+						render->a[m][1]='$';
+						render->reset();
+					}
+				}
+			}
 		}
 
 
-		else if(draw==9)  /* to FILL A POLYGON with the selected color */
+		/* to draw a POLYGON */
+		else if(draw==5)  
+		{
+			pol=1;
+			if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
+			{
+				render->drawpoint(x, y);
+				render->a2=render->a1;
+				render->b2=render->b1;
+				render->a1=x;
+				render->b1=render->wh-y;
+				m++;
+				render->a[m][0]=x;
+				render->a[m][1]=render->wh-y;
+
+				if(render->a1>render->wh/10+1 && render->wh/10<render->b1 && render->b1<render->wh-31)
+				{
+					if(render->a2>render->wh/10+1 && render->wh/10<render->b2 && render->b2<render->wh-31)
+					{
+						glLineWidth(render->size);
+						glBegin(GL_LINES);
+							glVertex2f(render->a2, render->b2);
+							glVertex2f(render->a1, render->b1);
+						glEnd();
+					}
+				}
+			}
+		}
+
+		/* to draw a CIRCLE */
+		else if(draw==6)   
 		{
 			if(pol==1)
+			{
+				m++;
+				render->a[m][0]='$';
+				render->a[m][1]='$';
+
+				pol=0;
+			}
+
+			if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
+			{
+				render->drawpoint(x, y);
+				render->a2=render->a1;
+				render->b2=render->b1;
+				render->a1=x;
+				render->b1=render->wh-y;
+				if(render->a1>render->wh/10+1 && render->wh/10<render->b1 && render->b1<render->wh-31)
 				{
-					m++;
-					render->a[m][0]='$';
-					render->a[m][1]='$';
-
-					pol=0;
+					if(render->a2>render->wh/10+1 && render->wh/10<render->b2 && render->b2<render->wh-31)
+					{
+						r=sqrt((render->a1-render->a2)*(render->a1-render->a2)+(render->b1-render->b2)*(render->b1-render->b2));
+						render->draw_circle(render->a2, render->b2, r);
+						n++;
+						render->b[n][0]=render->a2;
+						render->b[n][1]=render->b2;
+						n++;
+						render->b[n][0]=render->a1;
+						render->b[n][1]=render->b1;
+						n++;
+						render->b[n][0]='$';
+						render->b[n][1]='$';
+						render->reset();
+					}
 				}
+			}
+		}
 
+		/* to draw a AIRBRUSH */
+		else if(draw==7)  
+		{
+			if(pol==1)
+			{
+				m++;
+				render->a[m][0]='$';
+				render->a[m][1]='$';
+				pol=0;
+			}
 
-		if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
-			 {
+			if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
+			{
+				for(i=0;i<60;i++)
+				{
+                	j=rand()%17;
+					k=rand()%17;
+					render->drawpoint(x+j,y+k);
+                }
+			}
+		}
+
+		/* to FILL A POLYGON with the selected color */
+		else if(draw==9)  
+		{
+			if(pol==1)
+			{
+				m++;
+				render->a[m][0]='$';
+				render->a[m][1]='$';
+				pol=0;
+			}
+
+			if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
+			{
 				y=render->wh-y;
-
-
 				render->flag1=0;
 				for(i=1;i<=m;i++)
 				{
@@ -648,7 +553,6 @@ void myMouse(int btn, int state, int x, int y)
 						num2++;
 					}
 					num1=i;
-
 					render->detect_point(num1, num2, x, y);
 
 					if(render->flag!=0)
@@ -658,12 +562,10 @@ void myMouse(int btn, int state, int x, int y)
 						render->flag1=1;
 					}
 					i=num2+1;
-
 				}
 
 				if(render->flag1==0 && flag2==0)
 				{
-
 					for(i=1;i<=n;i++)
 					{
 						num2=i-1;
@@ -676,12 +578,8 @@ void myMouse(int btn, int state, int x, int y)
 						r1=sqrt((render->b[num1][0]-render->b[num2][0])*(render->b[num1][0]-render->b[num2][0])+(render->b[num1][1]-render->b[num2][1])*(render->b[num1][1]-render->b[num2][1]));
 						r2=sqrt((render->b[num1][0]-x)*(render->b[num1][0]-x)+(render->b[num1][1]-y)*(render->b[num1][1]-y));
 
-
 						if(r2<r1)
 						{
-
-
-
 							for(i2=0;i2<r1;i2=i2+2)
 							{
 								render->fill=1;
@@ -699,46 +597,36 @@ void myMouse(int btn, int state, int x, int y)
 			}
 		}
 
-
-
-
-		if(draw==8) /* to ERASE */
-
+		/* to ERASE */
+		if(draw==8)
 		{
 			if(pol==1)
-				{
-					m++;
-					render->a[m][0]='$';
-					render->a[m][1]='$';
-
-					pol=0;
-				}
+			{
+				m++;
+				render->a[m][0]='$';
+				render->a[m][1]='$';
+				pol=0;
+			}
 
 			if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
-					glutMotionFunc(eraser);
-		 }
+				glutMotionFunc(eraser);
+		}
 
 		else if(draw==10)
 		{
 			if(pol==1)
-				{
-					m++;
-					render->a[m][0]='$';
-					render->a[m][1]='$';
+			{
+				m++;
+				render->a[m][0]='$';
+				render->a[m][1]='$';
 
-					pol=0;
-				}
-
+				pol=0;
+			}
 
 			if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
-
 				glutMotionFunc(paint);
 
 		}
-
-
-
-
 
 		else if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
 			glutMotionFunc(drawpoint);
@@ -748,22 +636,16 @@ void myMouse(int btn, int state, int x, int y)
 		{
 
 			save=2;
-
 			render->set_font(GLUT_BITMAP_9_BY_15);
 			render->set_color(0, 0, 0);
-
 			//drawstring(40*render->wh/60, 58*render->wh/60, 0.0, "Enter filename: ");
 			textx=60*render->wh/60;
 			texty=58*render->wh/60;
-
-
-
-
 		}
 
 
-
-		else if(x>=12*render->wh/60 && x<=18*render->wh/60 && render->wh-y>=57*render->wh/60 && render->wh-y<=render->wh) /* to SAVE the current image onto a FILE */
+		/* to SAVE the current image onto a FILE */
+		else if(x>=12*render->wh/60 && x<=18*render->wh/60 && render->wh-y>=57*render->wh/60 && render->wh-y<=render->wh)
 		{
 			save=1;
 
@@ -771,58 +653,36 @@ void myMouse(int btn, int state, int x, int y)
 			render->set_color(0, 0, 0);
 			textx=60*render->wh/60;
 			texty=58*render->wh/60;
-
-
-
 		}
 
 
-		else if(x>=18*render->wh/60 && x<=24*render->wh/60 && render->wh-y>=57*render->wh/60 && render->wh-y<=render->wh) /* to CLEAR the DRAWING AREA */
+		/* to CLEAR the DRAWING AREA */
+		else if(x>=18*render->wh/60 && x<=24*render->wh/60 && render->wh-y>=57*render->wh/60 && render->wh-y<=render->wh) 
 		{
 
-				for(i=1;i<=m;i++)
-					render->a[i][0]=render->a[i][1]=0;
+			for(i=1;i<=m;i++)
+				render->a[i][0]=render->a[i][1]=0;
 
-
-
-
-				for(i=1;i<=n;i++)
-					render->b[i][0]=render->b[i][1]=0;
-
+			for(i=1;i<=n;i++)
+				render->b[i][0]=render->b[i][1]=0;
 				m=n=0;
-
-
 				count=0;
 				display();
 		}
 
-
-
-
 		render->palette(render->wh/30, 2*render->wh/30, 2*render->wh/30, 2*render->wh/30, 2*render->wh/30, render->wh/30, render->wh/30, render->wh/30);  /* to display SELECTED COLOUR */
-
 		glFlush();
-
-
 		glReadBuffer(GL_FRONT);
-
-
 		glReadPixels(render->wh/10+2, render->wh/10, render->ww-render->wh/10-2, render->wh-render->wh/10-render->wh/20-1,GL_RGB, GL_UNSIGNED_BYTE, image);
-
 		posx=render->wh/10+2;
 		posy=render->wh/10;
-
-
 
   }
 
 	if(btn==GLUT_LEFT_BUTTON && state==GLUT_UP)
 	{
 		glReadBuffer(GL_FRONT);
-
-
 		glReadPixels(render->wh/10+2, render->wh/10, render->ww-render->wh/10-2, render->wh-render->wh/10-render->wh/20-1,GL_RGB, GL_UNSIGNED_BYTE, image);
-
 		posx=render->wh/10+2;
 		posy=render->wh/10;
 	}
