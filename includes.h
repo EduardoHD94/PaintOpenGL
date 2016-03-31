@@ -368,7 +368,6 @@ void myMouse(int btn, int state, int x, int y)
 			}
 		}
 
-
 		/* to draw a RECTANGLE */
 		else if(draw==4)  
 		{
