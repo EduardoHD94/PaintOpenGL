@@ -151,7 +151,7 @@ void display()
 
 }
 
-void myMouse(int btn, int state, int x, int y)
+void mouse(int btn, int state, int x, int y)
 {
 	GLfloat r, r1, r2;
 	int num1=0, num2=0;
