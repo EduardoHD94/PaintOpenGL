@@ -81,6 +81,10 @@ public:
 	void drawstring(float,float,float,string,float,float,float);
 
 
+	void draw_lines(float,float,bool);
+	void draw_triangle(float,float,float,float,float,float,int);
+
+
 	 /* to draw the COLOR PALETTE */
 
 };

@@ -331,11 +331,29 @@ void myMouse(int btn, int state, int x, int y)
 					{
 						if(punteada)
 						{
+							//Linea Punteada
+							
+							/*glLineStipple(3,ESPACIADO);   
+							glEnable(GL_LINE_STIPPLE);
+							glLineWidth(render->size);
+							glBegin(GL_LINE_STRIP);
+								glVertex2f(render->a2, render->b2);
+								glVertex2f(render->a1, render->b1);
+							glEnd();
+							render->reset();
+							*/
 							render->draw_lines(render->a1,render->a2,punteada);
 						}
 						else
 						{
+
 							render->draw_lines(render->a1,render->a2,punteada);
+							/*glLineWidth(render->size);
+							glBegin(GL_LINES);
+								glVertex2f(render->a2, render->b2);
+								glVertex2f(render->a1, render->b1);
+							glEnd();
+							render->reset();*/
 						}
 					}
 				}
@@ -349,19 +367,37 @@ void myMouse(int btn, int state, int x, int y)
 			if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
 			{
 				render->drawpoint(x, y);
-				render->a3 = render->a2;
-				render->b3 = render->b2;
-				render->a2 = render->a1;
-				render->b2 = render->b1;
-				render->a1 = x;
-				render->b1 = render->wh-y;
-				if(render->a1 > render->wh/10+1 && render->wh/10 < render->b1 && render->b1 < render->wh-31)
+				render->a3=render->a2;
+				render->b3=render->b2;
+				render->a2=render->a1;
+				render->b2=render->b1;
+				render->a1=x;
+				render->b1=render->wh-y;
+				if(render->a1>render->wh/10+1 && render->wh/10<render->b1 && render->b1<render->wh-31)
 				{
-					if(render->a2 > render->wh/10+1 && render->wh/10 < render->b2 && render->b2 < render->wh-31)
+					if(render->a2>render->wh/10+1 && render->wh/10<render->b2 && render->b2<render->wh-31)
 					{
-						if(render->a3 > render->wh/10+1 && render->wh/10 < render->b3 && render->b3 < render->wh-31)
+						if(render->a3>render->wh/10+1 && render->wh/10<render->b3 && render->b3<render->wh-31)
 						{
-							render->draw_triangle(render->a1,render->a2,render->a3,render->b1,render->b2,render->b3,m);
+							glLineWidth(render->size);
+							glBegin(GL_LINE_LOOP);
+								glVertex2f(render->a3, render->b3);
+								glVertex2f(render->a2, render->b2);
+								glVertex2f(render->a1, render->b1);
+							glEnd();
+							m++;
+							render->a[m][0]=render->a3;
+							render->a[m][1]=render->b3;
+							m++;
+							render->a[m][0]=render->a2;
+							render->a[m][1]=render->b2;
+							m++;
+							render->a[m][0]=render->a1;
+							render->a[m][1]=render->b1;
+							m++;
+							render->a[m][0]='$';
+							render->a[m][1]='$';
+							render->reset();
 						}
 					}
 				}

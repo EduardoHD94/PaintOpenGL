@@ -687,3 +687,49 @@ void Render::decrement_size()
 	else
 		size--;
 }
+
+void Render::draw_lines(float a1, float a2, bool punteada)
+{
+	if(punteada)
+	{
+	glLineStipple(3,0xeeee);  
+	glEnable(GL_LINE_STIPPLE);
+	glLineWidth(size);
+	glBegin(GL_LINE_STRIP);
+		glVertex2f(a2, b2);
+		glVertex2f(a1, b1);
+	glEnd();
+	}
+	else
+	{
+		glLineWidth(size);
+		glBegin(GL_LINES);
+			glVertex2f(a2, b2);
+			glVertex2f(a1, b1);
+		glEnd();
+	}
+	reset();
+}
+
+void Render::draw_triangle(float a1, float a2, float a3, float b1, float b2, float b3, int m)
+{
+	glLineWidth(size);
+	glBegin(GL_LINE_LOOP);
+		glVertex2f(a3, b3);
+		glVertex2f(a2, b2);
+		glVertex2f(a1, b1);
+	glEnd();
+	m++;
+	a[m][0]=a3;
+	a[m][1]=b3;
+	m++;
+	a[m][0]=a2;
+	a[m][1]=b2;
+	m++;
+	a[m][0]=a1;
+	a[m][1]=b1;
+	m++;
+	a[m][0]='$';
+	a[m][1]='$';
+	reset();
+}
