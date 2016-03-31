@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <stdio.h>
+#include <fstream>
 #include <iostream>
 #include "Render.h"
 #include "Circulo.h"
