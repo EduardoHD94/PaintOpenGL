@@ -13,7 +13,8 @@
 #include "Linea.h"
 #include "Punto.h"
 #include "Triangulo.h"
-
+ 
+#define ESPACIADO 0xeeee
 using namespace std;
 
 //GLsizei wh = 600, ww = 800,wx,wy, wx1=800, wy1=600;/*display window render->size*/
@@ -29,6 +30,7 @@ float textx,texty, textz=0.0;
 int save=0;
 
 char* image;
+bool punteada = true;
 
 int count=0;
 int sub_menu;
@@ -142,9 +144,9 @@ void display()
 	render->draw_btn_increment();
 	render->draw_btn_decrement();
 	render->set_font(GLUT_BITMAP_HELVETICA_12);
-	render->drawstring(6*render->wh/60, 58*render->wh/60, 0.0, "Open",0,0,0);
-	render->drawstring(12*render->wh/60, 58*render->wh/60, 0.0, "Save",0,0,0);
-	render->drawstring(18*render->wh/60, 58*render->wh/60, 0.0, "Clear",0,0,0);
+	//render->drawstring(6*render->wh/60, 58*render->wh/60, 0.0, "Abrir",0,0,0);
+	render->drawstring(12*render->wh/60, 58*render->wh/60, 0.0, "Guardar",0,0,0);
+	render->drawstring(18*render->wh/60, 58*render->wh/60, 0.0, "Borrar",0,0,0);
 	glFlush();
 
 }
@@ -290,6 +292,20 @@ void myMouse(int btn, int state, int x, int y)
 			draw=10;
 		}
 
+
+		else if(2<x && x<render->wh/20 && 13*render->wh/20<render->wh-y && render->wh-y<14*render->wh/20)                    
+		{
+			render->reset();
+			render->increment_size();
+		}
+
+		/* selected option is PAINT BRUSH */
+		else if(render->wh/20<x && x<render->wh/10-2 && 13*render->wh/20<render->wh-y && render->wh-y<14*render->wh/20)            
+		{
+			render->reset();
+			render->decrement_size();
+		}
+
 		 if(draw==1)         /* to draw using a  PENCIL  */
 		{
 			if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
@@ -313,12 +329,26 @@ void myMouse(int btn, int state, int x, int y)
 				{
 					if(render->a2>render->wh/10+1 && render->wh/10<render->b2 && render->b2<render->wh-31)
 					{
-						glLineWidth(render->size);
-						glBegin(GL_LINES);
-							glVertex2f(render->a2, render->b2);
-							glVertex2f(render->a1, render->b1);
-						glEnd();
-						render->reset();
+						if(punteada)
+						{
+							glLineStipple(3,ESPACIADO);
+							glEnable(GL_LINE_STIPPLE);
+							glLineWidth(render->size);
+							glBegin(GL_LINE_STRIP);
+								glVertex2f(render->a2, render->b2);
+								glVertex2f(render->a1, render->b1);
+							glEnd();
+							render->reset();
+						}
+						else
+						{
+							glLineWidth(render->size);
+							glBegin(GL_LINE_STRIP);
+								glVertex2f(render->a2, render->b2);
+								glVertex2f(render->a1, render->b1);
+							glEnd();
+							render->reset();
+						}
 					}
 				}
 			}
@@ -601,6 +631,7 @@ void myMouse(int btn, int state, int x, int y)
 				render->b[i][0]=render->b[i][1]=0;
 				m=n=0;
 				count=0;
+				render->size = 1;
 				display();
 		}
 

@@ -682,5 +682,8 @@ void Render::increment_size()
 
 void Render::decrement_size()
 {
-	size--;
+	if(size == 1)
+		size = 1;
+	else
+		size--;
 }
