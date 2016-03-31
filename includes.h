@@ -323,7 +323,7 @@ void myMouse(int btn, int state, int x, int y)
 				render->b2=render->b1;
 
 				render->a1=x;
-				render->b1=render->wh-y;
+				render->b1=render->wh-y;       
 
 				if(render->a1>render->wh/10+1 && render->wh/10<render->b1 && render->b1<render->wh-31)
 				{
@@ -331,7 +331,7 @@ void myMouse(int btn, int state, int x, int y)
 					{
 						if(punteada)
 						{
-							glLineStipple(3,ESPACIADO);
+							glLineStipple(3,ESPACIADO);   //Linea Punteada
 							glEnable(GL_LINE_STIPPLE);
 							glLineWidth(render->size);
 							glBegin(GL_LINE_STRIP);
