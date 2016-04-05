@@ -16,7 +16,7 @@ Cuadrilatero::~Cuadrilatero()
 {
 	cout << "Cuadrilatero creado en: " << endl;
 	cout << "(" << x1 << "," << y1 << ")\n(" << x2 << "," << y2 << ")" << endl;
-    cout << "Cuadrilatero eliminado" << endl;
+    cout << "Cuadrilatero eliminado" << endl << endl;
 }
 
 void Cuadrilatero::set_coords(int x1, int x2, int y1, int y2)

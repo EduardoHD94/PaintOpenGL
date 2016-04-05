@@ -16,7 +16,9 @@ Linea::Linea(int x1, int x2, int y1, int y2, bool punteada)
 
 Linea::~Linea()
 {
-	cout << "Linea eliminada" << endl;
+	cout << "Linea creada en: " << endl;
+	cout << "(" << x1 << "," << y1 << ")" << endl;
+	cout << "Linea eliminada" << endl << endl;
 }
 
 void Linea::set_coords(int x1, int x2, int y1, int y2)

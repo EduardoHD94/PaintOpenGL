@@ -19,7 +19,7 @@ Triangulo::~Triangulo()
 {
 	cout << "Triangulo creado en: " << endl;
 	cout << "(" << x1 << "," << y1 << ")\n(" << x2 << "," << y2 << ")\n(" << x3 << "," << y3 << ")" << endl;
-    cout << "Triangulo eliminado" << endl;
+    cout << "Triangulo eliminado" << endl << endl;
 }
 
 void Triangulo::set_coords(int x1, int x2, int x3, int y1, int y2, int y3)

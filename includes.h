@@ -141,36 +141,6 @@ void guardaImagen (char filename[160], int x, int y)
 
 void display()
 {
-/*
-	Triangulo  uno(100, 100, 130,  130, 160, 160);
-	Triangulo  dos(200, 200, 230,  230, 260, 260);
-	Triangulo tres(300, 300, 330, 330, 360, 360);
-*/
-	Cuadrilatero one(100,110,200,210);
-	Cuadrilatero two(210,220,250,260);
-
-	Linea a(310,410,310,410,false);
-	Linea b(320,420,410,420,true);
-	Linea c(530,510,530,510,false);
-
-	Punto xx(123,123);
-	Punto yy(523,523);
-
-	/*
-	v_Triangulos.push_back(uno);
-	v_Triangulos.push_back(dos);
-	v_Triangulos.push_back(tres);
-
-	v_Cuadrilateros.push_back(one);
-	v_Cuadrilateros.push_back(two);
-
-	v_Lineas.push_back(a);
-	v_Lineas.push_back(b);
-	v_Lineas.push_back(c);
-
-	v_Puntos.push_back(xx);
-	v_Puntos.push_back(yy);
-*/
 	render->set_color_background(255,255,255,255);
 	render->draw_toolbar();
 	render->draw_palette();
@@ -193,31 +163,22 @@ void display()
 	render->drawstring(18*render->wh/60, 58*render->wh/60, 0.0, "Borrar",0,0,0);
 
 	for(unsigned int i = 0; i < v_Triangulos.size(); i++){
-        cout << v_Triangulos.at(i).get_x1() << endl;
         v_Triangulos.at(i).dibujaTriangulo(1);
     }
 
     for(unsigned int i = 0; i < v_Cuadrilateros.size(); i++){
-        cout << v_Cuadrilateros.at(i).get_x1() << endl;
         v_Cuadrilateros.at(i).dibujaCuadrilatero(1);
     }
 
     for(unsigned int i = 0; i < v_Lineas.size(); i++){
-        cout << v_Lineas.at(i).get_x1() << endl;
         v_Lineas.at(i).dibujaLinea(1);
     }
 
 	 for(unsigned int i = 0; i < v_Puntos.size(); i++){
-        cout << v_Puntos.at(i).get_x() << endl;
         v_Puntos.at(i).dibujaPunto(4);
     }
 
-  
 	glFlush();
-
-	//display();
-
-
 }
 
 void mouse(int btn, int state, int x, int y)
@@ -400,12 +361,18 @@ void mouse(int btn, int state, int x, int y)
 					{
 						if(punteada)
 						{
-							render->draw_lines(render->a1,render->a2,punteada);
+							Linea linea(render->a1,render->a2,render->b1,render->b2,punteada);
+							v_Lineas.push_back(linea);
+							//render->draw_lines(render->a1,render->a2,punteada);
 						}
 						else
 						{
-							render->draw_lines(render->a1,render->a2,punteada);
+							Linea linea(render->a1,render->a2,render->b1,render->b2,punteada);
+							v_Lineas.push_back(linea);
+							//render->draw_lines(render->a1,render->a2,punteada);
 						}
+						render->reset();
+						display();
 					}
 				}
 			}
