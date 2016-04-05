@@ -416,7 +416,7 @@ void mouse(int btn, int state, int x, int y)
 						if(render->a3 > render->wh/10+1 && render->wh/10 < render->b3 && render->b3 < render->wh-31)
 						{
 							//render->draw_triangle(render->a1,render->a2,render->a3,render->b1,render->b2,render->b3,m);
-							Triangulo triangulo(render->a1,render->a2,render->a3,render->b1,render->b2,render->b3,render->size);
+							Triangulo triangulo(render->a1,render->a2,render->a3,render->b1,render->b2,render->b3,render->size,render->punteada);
 							v_Triangulos.push_back(triangulo);
 							render->reset();
 							display();

@@ -9,8 +9,9 @@ private:
 	int x1, x2, x3;
 	int y1, y2, y3;
 	int size;
+	bool punteada;
 public:
-	Triangulo(int,int,int,int,int,int,int);
+	Triangulo(int,int,int,int,int,int,int,bool);
 	Triangulo();
 	~Triangulo();
 	void set_coords(int, int, int, int, int, int);
