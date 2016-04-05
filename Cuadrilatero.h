@@ -4,6 +4,8 @@
 
 #include <iostream>
 #include <stdlib.h>
+#include <GL/glut.h>
+
 using namespace std;
 
 class Cuadrilatero
@@ -14,7 +16,9 @@ private:
 public:
 	Cuadrilatero(int,int,int,int);
 	Cuadrilatero();
+	~Cuadrilatero();
 	void set_coords(int, int, int, int);
+	void dibujaCuadrilatero(int);
 	int get_x1();
 	int get_x2();
 	int get_y1();

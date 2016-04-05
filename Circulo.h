@@ -10,15 +10,18 @@ class Circulo
 private:
 	int x;
 	int y;
-	int radio;
+	int radiox;
+	int radioy;
 public:
-	Circulo(int,int,int);
+	Circulo(int,int,int,int);
 	Circulo();
 	void set_coords(int, int);
-	void set_radio(int);
+	void set_radio(int, int);
+	void dibujaCirculo(int);
 	int get_x();
 	int get_y();
-	int get_radio();
+	int get_radiox();
+	int get_radioy();
 
 };
 

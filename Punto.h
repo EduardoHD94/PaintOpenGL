@@ -14,6 +14,7 @@ public:
 	Punto();
 	~Punto();
 	void set_coords(int, int);
+	void dibujaPunto();
 	int get_x();
 	int get_y();
 

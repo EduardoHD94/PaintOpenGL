@@ -13,6 +13,8 @@
 #include "Linea.h"
 #include "Punto.h"
 #include "Triangulo.h"
+#include <vector>
+
  
 #define ESPACIADO 0xeeee
 using namespace std;
@@ -20,6 +22,10 @@ using namespace std;
 //GLsizei wh = 600, ww = 800,wx,wy, wx1=800, wy1=600;/*display window render->size*/
 
 Render *render = new Render();
+
+//Triangulo *uno = new Triangulo(100, 100, 130,  130, 160, 160);
+//Triangulo *dos = new Triangulo(200, 200, 230,  230, 260, 260);
+
 
 int draw;  /* to store draw option*/
 int m, n;
@@ -127,6 +133,35 @@ void guardaImagen (char filename[160], int x, int y)
 
 void display()
 {
+
+	vector<Triangulo> v_Triangulos;
+	vector<Cuadrilatero> v_Cuadrilateros;
+	vector<Circulo> v_Circulos;
+	vector<Linea> v_Lineas;
+
+	Triangulo  uno(100, 100, 130,  130, 160, 160);
+	Triangulo  dos(200, 200, 230,  230, 260, 260);
+	Triangulo tres(300, 300, 330, 330, 360, 360);
+
+	Cuadrilatero one(100,110,200,210);
+	Cuadrilatero two(210,220,250,260);
+
+	Linea a(310,410,310,410,false);
+	Linea b(320,420,410,420,true);
+	Linea c(530,510,530,510,false);
+	
+	v_Triangulos.push_back(uno);
+	v_Triangulos.push_back(dos);
+	v_Triangulos.push_back(tres);
+
+	v_Cuadrilateros.push_back(one);
+	v_Cuadrilateros.push_back(two);
+
+	v_Lineas.push_back(a);
+	v_Lineas.push_back(b);
+	v_Lineas.push_back(c);
+
+
 	render->set_color_background(255,255,255,255);
 	render->draw_toolbar();
 	render->draw_palette();
@@ -147,7 +182,26 @@ void display()
 	//render->drawstring(6*render->wh/60, 58*render->wh/60, 0.0, "Abrir",0,0,0);
 	render->drawstring(12*render->wh/60, 58*render->wh/60, 0.0, "Guardar",0,0,0);
 	render->drawstring(18*render->wh/60, 58*render->wh/60, 0.0, "Borrar",0,0,0);
+
+	for(unsigned int i = 0; i < v_Triangulos.size(); i++){
+        cout << v_Triangulos.at(i).get_x1() << endl;
+        v_Triangulos.at(i).dibujaTriangulo(1);
+    }
+
+    for(unsigned int i = 0; i < v_Cuadrilateros.size(); i++){
+        cout << v_Cuadrilateros.at(i).get_x1() << endl;
+        v_Cuadrilateros.at(i).dibujaCuadrilatero(1);
+    }
+
+    for(unsigned int i = 0; i < v_Lineas.size(); i++){
+        cout << v_Lineas.at(i).get_x1() << endl;
+        v_Lineas.at(i).dibujaLinea(1);
+    }
+
+  
 	glFlush();
+
+
 
 }
 

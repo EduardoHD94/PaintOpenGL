@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
+#include <GL/glut.h>
 using namespace std;
 
 class Triangulo
@@ -12,6 +13,7 @@ public:
 	Triangulo();
 	~Triangulo();
 	void set_coords(int, int, int, int, int, int);
+	void dibujaTriangulo(int);
 	int get_x1();
 	int get_x2();
 	int get_x3();

@@ -5,11 +5,12 @@ using namespace std;
 
 Circulo::Circulo(){}
 
-Circulo::Circulo(int x, int y, int radio)
+Circulo::Circulo(int x, int y, int radiox, int radioy)
 {
 	this-> x = x;
 	this-> y = y;
-	this-> radio = radio;
+	this-> radiox = radiox;
+	this-> radioy = radioy;
 }
 
 void Circulo::set_coords(int x, int y)
@@ -18,12 +19,17 @@ void Circulo::set_coords(int x, int y)
 	this->y = y;
 }
 
-void Circulo::set_radio(int radio)
+void Circulo::set_radio(int radiox, int radioy)
 {
-	this->radio = radio;
+	this->radiox = radiox;
+	this->radioy = radioy;
 
 }
 
+void Circulo::dibujaCirculo(int size)
+{
+
+}
 
 int Circulo::get_x()
 {
@@ -34,7 +40,11 @@ int Circulo::get_y()
 {
 	return y;
 }
-int Circulo::get_radio()
+int Circulo::get_radiox()
 {
-	return radio;
+	return radiox;
+}
+int Circulo::get_radioy()
+{
+	return radioy;
 }
