@@ -73,6 +73,8 @@ public:
 	void draw_btn_air_brush();
 	void draw_btn_increment();
 	void draw_btn_decrement();
+	void draw_btn_solid_line();
+	void draw_btn_dotted_line();
 
 	void increment_size();
 	void decrement_size();

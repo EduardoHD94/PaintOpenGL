@@ -364,8 +364,8 @@ void Render::draw_toolbox()
 	glBegin(GL_QUADS);                            
 		glVertex2f(2, wh-(wh/20)-1);
 		glVertex2f(wh/10-2, wh-(wh/20)-1);
-		glVertex2f(wh/10-2,13*wh/20);
-		glVertex2f(2, 13*wh/20);
+		glVertex2f(wh/10-2,11*wh/20);
+		glVertex2f(2, 11*wh/20);
 	glEnd();
 
 	
@@ -373,14 +373,14 @@ void Render::draw_toolbox()
 	glBegin(GL_LINE_LOOP);                            
 		glVertex2f(2, wh-(wh/20)-1);
 		glVertex2f(wh/10-2, wh-(wh/20)-1);
-		glVertex2f(wh/10-2,13*wh/20);
-		glVertex2f(2, 13*wh/20);
+		glVertex2f(wh/10-2,11*wh/20);
+		glVertex2f(2, 11*wh/20);
 	glEnd();
 
 	set_color(0, 0, 0);
 	glBegin(GL_LINES);
 		glVertex2f(wh/20, wh-(wh/20)-1);
-		glVertex2f(wh/20, 13*wh/20);
+		glVertex2f(wh/20, 11*wh/20);
 
 		glVertex2f(2, 18*wh/20);
 		glVertex2f(wh/10-2, 18*wh/20);
@@ -396,6 +396,12 @@ void Render::draw_toolbox()
 
 		glVertex2f(2, 14*wh/20);
 		glVertex2f(wh/10-2, 14*wh/20);
+
+		glVertex2f(2, 13*wh/20);
+		glVertex2f(wh/10-2, 13*wh/20);
+
+		glVertex2f(2, 12*wh/20);
+		glVertex2f(wh/10-2, 12*wh/20);
 	glEnd();
 	
 }
@@ -674,6 +680,38 @@ void Render::draw_btn_decrement()
 		glVertex2f(10.5*wh/120, 13.5*wh/20);
 	glEnd();
 }
+
+void Render::draw_btn_solid_line()
+{
+	set_color(0, 0, 0);
+	glBegin(GL_TRIANGLE_FAN);                          
+		glVertex2f(1.3*wh/120, 12.5*wh/20);
+		glVertex2f(5.3*wh/120, 12.5*wh/20);
+
+		glVertex2f(5.3*wh/120, 12.55*wh/20);
+		glVertex2f(1.3*wh/120, 12.55*wh/20);
+	glEnd();
+}
+
+void Render::draw_btn_dotted_line()
+{
+	set_color(0, 0, 0);
+	glBegin(GL_LINES);                              
+		glVertex2f(7.3*wh/120, 12.5*wh/20);
+		glVertex2f(8.1*wh/120, 12.5*wh/20);
+		glVertex2f(8.4*wh/120, 12.5*wh/20);
+		glVertex2f(9.0*wh/120, 12.5*wh/20);
+		glVertex2f(9.3*wh/120, 12.5*wh/20);
+		glVertex2f(9.9*wh/120, 12.5*wh/20);
+		glVertex2f(10.2*wh/120, 12.5*wh/20);
+		glVertex2f(10.8*wh/120, 12.5*wh/20);
+	glEnd();	
+}
+
+/*void Render::draw_btn_increment_polygon()
+{
+
+}*/
 
 void Render::increment_size()
 {

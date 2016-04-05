@@ -159,6 +159,8 @@ void display()
 	render->draw_btn_brush();
 	render->draw_btn_increment();
 	render->draw_btn_decrement();
+	render->draw_btn_solid_line();
+	render->draw_btn_dotted_line();
 	render->set_font(GLUT_BITMAP_HELVETICA_12);
 	//render->drawstring(6*render->wh/60, 58*render->wh/60, 0.0, "Abrir",0,0,0);
 	render->drawstring(12*render->wh/60, 58*render->wh/60, 0.0, "Guardar",0,0,0);
