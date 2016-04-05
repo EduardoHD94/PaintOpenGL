@@ -17,7 +17,8 @@ Triangulo::Triangulo(int x1, int x2, int x3, int y1, int y2, int y3)
 
 Triangulo::~Triangulo()
 {
-
+	cout << "Triangulo creado en: " << endl;
+	cout << "(" << x1 << "," << y1 << ")\n(" << x2 << "," << y2 << ")\n(" << x3 << "," << y3 << ")" << endl;
     cout << "Triangulo eliminado" << endl;
 }
 

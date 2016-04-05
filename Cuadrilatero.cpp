@@ -14,7 +14,8 @@ Cuadrilatero::Cuadrilatero(int x1, int x2, int y1, int y2)
 
 Cuadrilatero::~Cuadrilatero()
 {
-
+	cout << "Cuadrilatero creado en: " << endl;
+	cout << "(" << x1 << "," << y1 << ")\n(" << x2 << "," << y2 << ")" << endl;
     cout << "Cuadrilatero eliminado" << endl;
 }
 

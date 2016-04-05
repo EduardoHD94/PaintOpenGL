@@ -47,6 +47,14 @@ char fname[20];
 int s=0;
 int wel=2;
 
+/*Vectores*/
+vector<Triangulo> v_Triangulos;
+vector<Cuadrilatero> v_Cuadrilateros;
+vector<Circulo> v_Circulos;
+vector<Linea> v_Lineas;
+vector<Punto> v_Puntos;
+/*FinVectores*/
+
 void eraser(int x, int y)  /* ERASER function */
 {
 	y=render->wh-y;
@@ -133,23 +141,22 @@ void guardaImagen (char filename[160], int x, int y)
 
 void display()
 {
-
-	vector<Triangulo> v_Triangulos;
-	vector<Cuadrilatero> v_Cuadrilateros;
-	vector<Circulo> v_Circulos;
-	vector<Linea> v_Lineas;
-
+/*
 	Triangulo  uno(100, 100, 130,  130, 160, 160);
 	Triangulo  dos(200, 200, 230,  230, 260, 260);
 	Triangulo tres(300, 300, 330, 330, 360, 360);
-
+*/
 	Cuadrilatero one(100,110,200,210);
 	Cuadrilatero two(210,220,250,260);
 
 	Linea a(310,410,310,410,false);
 	Linea b(320,420,410,420,true);
 	Linea c(530,510,530,510,false);
-	
+
+	Punto xx(123,123);
+	Punto yy(523,523);
+
+	/*
 	v_Triangulos.push_back(uno);
 	v_Triangulos.push_back(dos);
 	v_Triangulos.push_back(tres);
@@ -161,7 +168,9 @@ void display()
 	v_Lineas.push_back(b);
 	v_Lineas.push_back(c);
 
-
+	v_Puntos.push_back(xx);
+	v_Puntos.push_back(yy);
+*/
 	render->set_color_background(255,255,255,255);
 	render->draw_toolbar();
 	render->draw_palette();
@@ -198,9 +207,15 @@ void display()
         v_Lineas.at(i).dibujaLinea(1);
     }
 
+	 for(unsigned int i = 0; i < v_Puntos.size(); i++){
+        cout << v_Puntos.at(i).get_x() << endl;
+        v_Puntos.at(i).dibujaPunto(4);
+    }
+
   
 	glFlush();
 
+	//display();
 
 
 }
@@ -415,7 +430,12 @@ void mouse(int btn, int state, int x, int y)
 					{
 						if(render->a3 > render->wh/10+1 && render->wh/10 < render->b3 && render->b3 < render->wh-31)
 						{
-							render->draw_triangle(render->a1,render->a2,render->a3,render->b1,render->b2,render->b3,m);
+							//render->draw_triangle(render->a1,render->a2,render->a3,render->b1,render->b2,render->b3,m);
+							Triangulo insertado(render->a1,render->a2,render->a3,render->b1,render->b2,render->b3);
+							v_Triangulos.push_back(insertado);
+							render->reset();
+							display();
+
 						}
 					}
 				}
@@ -437,7 +457,11 @@ void mouse(int btn, int state, int x, int y)
 				{
 					if(render->a2 > render->wh/10+1 && render->wh/10 < render->b2 && render->b2 < render->wh-31)
 					{
-						render->draw_rectangle(render->a1,render->a2,render->b1,render->b2,m);
+						//render->draw_rectangle(render->a1,render->a2,render->b1,render->b2,m);
+						Cuadrilatero cuadrilatero(render->a1,render->a2,render->b1,render->b2);
+						v_Cuadrilateros.push_back(cuadrilatero);
+						render->reset();
+						display();
 					}
 				}
 			}
@@ -617,7 +641,7 @@ void mouse(int btn, int state, int x, int y)
 			render->set_color(0, 0, 0);
 			textx=60*render->wh/60;
 			texty=58*render->wh/60; */
-			guardaImagen("Imagen.tga",800,600);
+			//guardaImagen("Imagen.tga",800,600);
 		}
 
 

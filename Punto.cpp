@@ -25,11 +25,13 @@ void Punto::set_coords(int x, int y)
 
 }
 
-void Punto::dibujaPunto()
+void Punto::dibujaPunto(int size)
 {
-  this-> x = y;
-	this-> y = x;
-
+  	glPointSize(size);
+	glBegin(GL_POINTS);
+		glVertex2f(x, y); 
+	glEnd();
+	glFlush();
 }
 
 int Punto::get_x()
