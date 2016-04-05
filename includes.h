@@ -161,6 +161,12 @@ void display()
 	render->draw_btn_decrement();
 	render->draw_btn_solid_line();
 	render->draw_btn_dotted_line();
+	render->draw_btn_vertex_increment();
+	render->draw_btn_vertex_decrement();
+	render->draw_btn_show_size();
+	render->draw_btn_show_vertex();
+	render->draw_size();
+	render->draw_vertex();
 	render->set_font(GLUT_BITMAP_HELVETICA_12);
 	//render->drawstring(6*render->wh/60, 58*render->wh/60, 0.0, "Abrir",0,0,0);
 	render->drawstring(12*render->wh/60, 58*render->wh/60, 0.0, "Guardar",0,0,0);
@@ -331,6 +337,7 @@ void mouse(int btn, int state, int x, int y)
 		{
 			render->reset();
 			render->increment_size();
+			display();
 		}
 
 		/*Decremantar tamaño*/
@@ -338,6 +345,7 @@ void mouse(int btn, int state, int x, int y)
 		{
 			render->reset();
 			render->decrement_size();
+			display();
 		}
 		/*Seleccionar linea continua*/
 		else if(2<x && x<render->wh/20 && 12*render->wh/20<render->wh-y && render->wh-y<13*render->wh/20)                    
@@ -352,6 +360,23 @@ void mouse(int btn, int state, int x, int y)
 			render->reset();
 			render->lineaPunteada(true);
 		}
+
+				/*Seleccionar linea continua*/
+		else if(2<x && x<render->wh/20 && 11*render->wh/20<render->wh-y && render->wh-y<12*render->wh/20)                    
+		{
+			render->reset();
+			render->increment_vertex();
+			display();
+		}
+
+		/*Seleccionar linea punteada*/
+		else if(render->wh/20<x && x<render->wh/10-2 && 11*render->wh/20<render->wh-y && render->wh-y<12*render->wh/20)            
+		{
+			render->reset();
+			render->decrement_vertex();
+			display();
+		}
+
 
 		 if(draw==1)         /* to draw using a  PENCIL  */
 		{

@@ -8,7 +8,7 @@
 using namespace std;
 
 class Render
-{
+{ 
 private:
 
 public:
@@ -22,7 +22,7 @@ public:
 	void *currentFont;
 	
 //
-	int size;
+	int size, vertices;
 	int fill;
 	int flag, flag1;
 	float a1, a2, a3, b1, b2, b3;
@@ -76,7 +76,15 @@ public:
 	void draw_btn_decrement();
 	void draw_btn_solid_line();
 	void draw_btn_dotted_line();
+	void draw_btn_vertex_increment();
+	void draw_btn_vertex_decrement();
+	void draw_btn_show_size();
+	void draw_btn_show_vertex();
+	void draw_size();
+	void draw_vertex();
 
+	void increment_vertex();
+	void decrement_vertex();
 	void increment_size();
 	void decrement_size();
 

@@ -3,6 +3,9 @@
 #include <GL/glut.h>
 #include <iostream>
 #include <string>
+#include <sstream>
+#include <stdlib.h>
+#include <stdio.h>
 
 using namespace std;
 
@@ -13,6 +16,7 @@ Render::Render()
 	wx1 = 800;
 	wy1 = 600;
 	size = 1;
+	vertices = 5;
 	fill = 0;
 	flag = 0;
 	a1 = a2 = a3 = b1 = b2 = b3 = 0;
@@ -364,8 +368,8 @@ void Render::draw_toolbox()
 	glBegin(GL_QUADS);                            
 		glVertex2f(2, wh-(wh/20)-1);
 		glVertex2f(wh/10-2, wh-(wh/20)-1);
-		glVertex2f(wh/10-2,11*wh/20);
-		glVertex2f(2, 11*wh/20);
+		glVertex2f(wh/10-2,9*wh/20);
+		glVertex2f(2, 9*wh/20);
 	glEnd();
 
 	
@@ -373,14 +377,14 @@ void Render::draw_toolbox()
 	glBegin(GL_LINE_LOOP);                            
 		glVertex2f(2, wh-(wh/20)-1);
 		glVertex2f(wh/10-2, wh-(wh/20)-1);
-		glVertex2f(wh/10-2,11*wh/20);
-		glVertex2f(2, 11*wh/20);
+		glVertex2f(wh/10-2,9*wh/20);
+		glVertex2f(2, 9*wh/20);
 	glEnd();
 
 	set_color(0, 0, 0);
 	glBegin(GL_LINES);
 		glVertex2f(wh/20, wh-(wh/20)-1);
-		glVertex2f(wh/20, 11*wh/20);
+		glVertex2f(wh/20, 9*wh/20);
 
 		glVertex2f(2, 18*wh/20);
 		glVertex2f(wh/10-2, 18*wh/20);
@@ -402,6 +406,12 @@ void Render::draw_toolbox()
 
 		glVertex2f(2, 12*wh/20);
 		glVertex2f(wh/10-2, 12*wh/20);
+
+		glVertex2f(2, 11*wh/20);
+		glVertex2f(wh/10-2, 11*wh/20);
+
+		glVertex2f(2, 10*wh/20);
+		glVertex2f(wh/10-2, 10*wh/20);
 	glEnd();
 	
 }
@@ -708,10 +718,69 @@ void Render::draw_btn_dotted_line()
 	glEnd();	
 }
 
-/*void Render::draw_btn_increment_polygon()
+void Render::draw_btn_vertex_increment()
 {
+	set_color(0, 0, 0);
+	glBegin(GL_TRIANGLE_FAN);                         
+		glVertex2f(1.3*wh/120, 11.4*wh/20);
+		glVertex2f(3.1*wh/120, 11.7*wh/20);
+		glVertex2f(4.9*wh/120, 11.4*wh/20);
+	glEnd();
+}
 
-}*/
+void Render::draw_btn_vertex_decrement()
+{
+	set_color(0, 0, 0);
+	glBegin(GL_TRIANGLE_FAN);                         
+		glVertex2f(7.0*wh/120, 11.7*wh/20);
+		glVertex2f(9.0*wh/120, 11.4*wh/20);
+		glVertex2f(10.6*wh/120, 11.7*wh/20);
+	glEnd();	
+}
+
+void Render::draw_btn_show_size()
+{
+	drawstring(1.1*wh/120, 10.4*wh/20, 0.0, "size:",0,0,0);
+}
+
+void Render::draw_btn_show_vertex()
+{
+	drawstring(1.1*wh/120, 9.4*wh/20, 0.0, "lados:",0,0,0);
+}
+
+void Render::draw_size()
+{
+	string s;
+	stringstream out;
+	out << size;
+	s = out.str();
+	drawstring(7.0*wh/120, 10.4*wh/20, 0.0, s,0,0,0);
+}
+
+void Render::draw_vertex()
+{
+	string ss;
+	stringstream out2;
+	out2 << vertices;
+	ss = out2.str();
+	drawstring(7.0*wh/120, 9.4*wh/20, 0.0, ss,0,0,0);	
+}
+
+void Render::increment_vertex()
+{	
+	if(vertices == 8)
+		vertices = 8;
+	else
+		vertices++;
+}
+
+void Render::decrement_vertex()
+{
+	if(vertices == 5)
+		vertices = 5; 
+	else
+		vertices--;
+}
 
 void Render::increment_size()
 {
