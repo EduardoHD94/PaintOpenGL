@@ -13,12 +13,13 @@ class Cuadrilatero
 private:
 	int x1,x2;
 	int y1,y2;
+	int size;
 public:
-	Cuadrilatero(int,int,int,int);
+	Cuadrilatero(int, int, int, int, int);
 	Cuadrilatero();
 	~Cuadrilatero();
-	void set_coords(int, int, int, int);
-	void dibujaCuadrilatero(int);
+	void set_coords(int, int, int, int, int);
+	void dibujaCuadrilatero();
 	int get_x1();
 	int get_x2();
 	int get_y1();

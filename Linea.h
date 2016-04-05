@@ -10,17 +10,16 @@ using namespace std;
 class Linea
 {
 private:
-	int x1;
-	int y1;
-	int x2;
-	int y2;
+	int x1, x2;
+	int y1, y2;
+	int size;
 	bool punteada;
 public:
-	Linea(int,int,int,int,bool);
+	Linea(int,int,int,int,int,bool);
 	Linea();
 	~Linea();
 	void set_coords(int, int, int, int);
-	void dibujaLinea(int);
+	void dibujaLinea();
 	int get_x1();
 	int get_x2();
 	int get_y1();

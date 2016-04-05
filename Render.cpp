@@ -226,7 +226,6 @@ void Render::set_font(void *font)
 
 void Render::drawstring(float x,float y,float z,string s, float r, float g, float b)
 {
-	//char *c;
 	glRasterPos3f(x,y,z);
 
 	for (string::iterator i = s.begin(); i != s.end(); ++i)

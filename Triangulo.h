@@ -8,12 +8,13 @@ class Triangulo
 private:
 	int x1, x2, x3;
 	int y1, y2, y3;
+	int size;
 public:
-	Triangulo(int,int,int,int,int,int);
+	Triangulo(int,int,int,int,int,int,int);
 	Triangulo();
 	~Triangulo();
 	void set_coords(int, int, int, int, int, int);
-	void dibujaTriangulo(int);
+	void dibujaTriangulo();
 	int get_x1();
 	int get_x2();
 	int get_x3();

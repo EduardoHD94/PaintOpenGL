@@ -167,15 +167,15 @@ void display()
 	render->drawstring(18*render->wh/60, 58*render->wh/60, 0.0, "Borrar",0,0,0);
 
 	for(unsigned int i = 0; i < v_Triangulos.size(); i++){
-        v_Triangulos.at(i).dibujaTriangulo(1);
+        v_Triangulos.at(i).dibujaTriangulo();
     }
 
     for(unsigned int i = 0; i < v_Cuadrilateros.size(); i++){
-        v_Cuadrilateros.at(i).dibujaCuadrilatero(1);
+        v_Cuadrilateros.at(i).dibujaCuadrilatero();
     }
 
     for(unsigned int i = 0; i < v_Lineas.size(); i++){
-        v_Lineas.at(i).dibujaLinea(1);
+        v_Lineas.at(i).dibujaLinea();
     }
 
 	 for(unsigned int i = 0; i < v_Puntos.size(); i++){
@@ -365,19 +365,19 @@ void mouse(int btn, int state, int x, int y)
 					{
 						if(punteada)
 						{
-							Linea linea(render->a1,render->a2,render->b1,render->b2,punteada);
+							Linea linea(render->a1,render->a2,render->b1,render->b2,render->size,punteada);
 							v_Lineas.push_back(linea);
 							render->reset();
-						display();
+							display();
 
 							//render->draw_lines(render->a1,render->a2,punteada);
 						}
 						else
 						{
-							Linea linea(render->a1,render->a2,render->b1,render->b2,punteada);
+							Linea linea(render->a1,render->a2,render->b1,render->b2,render->size,punteada);
 							v_Lineas.push_back(linea);
 							render->reset();
-													display();
+							display();
 
 
 							//render->draw_lines(render->a1,render->a2,punteada);
@@ -407,8 +407,8 @@ void mouse(int btn, int state, int x, int y)
 						if(render->a3 > render->wh/10+1 && render->wh/10 < render->b3 && render->b3 < render->wh-31)
 						{
 							//render->draw_triangle(render->a1,render->a2,render->a3,render->b1,render->b2,render->b3,m);
-							Triangulo insertado(render->a1,render->a2,render->a3,render->b1,render->b2,render->b3);
-							v_Triangulos.push_back(insertado);
+							Triangulo triangulo(render->a1,render->a2,render->a3,render->b1,render->b2,render->b3,render->size);
+							v_Triangulos.push_back(triangulo);
 							render->reset();
 							display();
 
@@ -434,7 +434,7 @@ void mouse(int btn, int state, int x, int y)
 					if(render->a2 > render->wh/10+1 && render->wh/10 < render->b2 && render->b2 < render->wh-31)
 					{
 						//render->draw_rectangle(render->a1,render->a2,render->b1,render->b2,m);
-						Cuadrilatero cuadrilatero(render->a1,render->a2,render->b1,render->b2);
+						Cuadrilatero cuadrilatero(render->a1,render->a2,render->b1,render->b2,render->size);
 						v_Cuadrilateros.push_back(cuadrilatero);
 						render->reset();
 						display();
@@ -627,6 +627,13 @@ void mouse(int btn, int state, int x, int y)
 
 			for(i=1;i<=m;i++)
 				render->a[i][0]=render->a[i][1]=0;
+
+
+			v_Lineas.clear();
+			v_Cuadrilateros.clear();
+			v_Triangulos.clear();
+			v_Puntos.clear();
+			v_Circulos.clear(); 
 
 			for(i=1;i<=n;i++)
 				render->b[i][0]=render->b[i][1]=0;
