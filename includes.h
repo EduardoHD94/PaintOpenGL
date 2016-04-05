@@ -141,6 +141,8 @@ void guardaImagen (char filename[160], int x, int y)
 
 void display()
 {
+
+	system("clear");
 	render->set_color_background(255,255,255,255);
 	render->draw_toolbar();
 	render->draw_palette();
