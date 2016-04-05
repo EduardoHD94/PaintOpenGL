@@ -18,6 +18,7 @@ public:
 	int wy;
 	int wx1;
 	int wy1;
+	bool punteada;
 	void *currentFont;
 	
 //
@@ -87,6 +88,7 @@ public:
 	void draw_triangle(float,float,float,float,float,float,int);
 	void draw_rectangle(float,float,float,float,int);
 
+	void lineaPunteada(bool);
 
 	 /* to draw the COLOR PALETTE */
 

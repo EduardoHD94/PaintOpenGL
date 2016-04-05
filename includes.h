@@ -326,18 +326,31 @@ void mouse(int btn, int state, int x, int y)
 			draw=10;
 		}
 
-
+		/*Incrementar tamaño*/
 		else if(2<x && x<render->wh/20 && 13*render->wh/20<render->wh-y && render->wh-y<14*render->wh/20)                    
 		{
 			render->reset();
 			render->increment_size();
 		}
 
-		/* selected option is PAINT BRUSH */
+		/*Decremantar tamaño*/
 		else if(render->wh/20<x && x<render->wh/10-2 && 13*render->wh/20<render->wh-y && render->wh-y<14*render->wh/20)            
 		{
 			render->reset();
 			render->decrement_size();
+		}
+		/*Seleccionar linea continua*/
+		else if(2<x && x<render->wh/20 && 12*render->wh/20<render->wh-y && render->wh-y<13*render->wh/20)                    
+		{
+			render->reset();
+			render->lineaPunteada(false);
+		}
+
+		/*Seleccionar linea punteada*/
+		else if(render->wh/20<x && x<render->wh/10-2 && 12*render->wh/20<render->wh-y && render->wh-y<13*render->wh/20)            
+		{
+			render->reset();
+			render->lineaPunteada(true);
 		}
 
 		 if(draw==1)         /* to draw using a  PENCIL  */
@@ -355,7 +368,6 @@ void mouse(int btn, int state, int x, int y)
 				render->drawpoint(x, y);
 				render->a2=render->a1;
 				render->b2=render->b1;
-
 				render->a1=x;
 				render->b1=render->wh-y;       
 
@@ -365,21 +377,18 @@ void mouse(int btn, int state, int x, int y)
 					{
 						if(punteada)
 						{
-							Linea linea(render->a1,render->a2,render->b1,render->b2,render->size,punteada);
+							Linea linea(render->a1,render->a2,render->b1,render->b2,render->size,render->punteada);
 							v_Lineas.push_back(linea);
 							render->reset();
 							display();
-
 							//render->draw_lines(render->a1,render->a2,punteada);
 						}
 						else
 						{
-							Linea linea(render->a1,render->a2,render->b1,render->b2,render->size,punteada);
+							Linea linea(render->a1,render->a2,render->b1,render->b2,render->size,render->punteada);
 							v_Lineas.push_back(linea);
 							render->reset();
 							display();
-
-
 							//render->draw_lines(render->a1,render->a2,punteada);
 						}
 					}
@@ -634,6 +643,7 @@ void mouse(int btn, int state, int x, int y)
 			v_Triangulos.clear();
 			v_Puntos.clear();
 			v_Circulos.clear(); 
+			render->lineaPunteada(false);
 
 			for(i=1;i<=n;i++)
 				render->b[i][0]=render->b[i][1]=0;

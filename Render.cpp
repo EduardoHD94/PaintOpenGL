@@ -16,6 +16,7 @@ Render::Render()
 	fill = 0;
 	flag = 0;
 	a1 = a2 = a3 = b1 = b2 = b3 = 0;
+	punteada = false;
 }	
 
 
@@ -796,4 +797,11 @@ void Render::draw_rectangle(float a1, float a2, float b1, float b2, int m)
 	a[m][0]='$';
 	a[m][1]='$';
 	reset();
+}
+
+
+void Render::lineaPunteada(bool punteada)
+{
+	this->punteada = punteada;	
+	cout << punteada << endl;
 }
