@@ -365,16 +365,21 @@ void mouse(int btn, int state, int x, int y)
 						{
 							Linea linea(render->a1,render->a2,render->b1,render->b2,punteada);
 							v_Lineas.push_back(linea);
+							render->reset();
+						display();
+
 							//render->draw_lines(render->a1,render->a2,punteada);
 						}
 						else
 						{
 							Linea linea(render->a1,render->a2,render->b1,render->b2,punteada);
 							v_Lineas.push_back(linea);
+							render->reset();
+													display();
+
+
 							//render->draw_lines(render->a1,render->a2,punteada);
 						}
-						render->reset();
-						display();
 					}
 				}
 			}
