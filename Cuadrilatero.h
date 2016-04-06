@@ -14,8 +14,9 @@ private:
 	int x1,x2;
 	int y1,y2;
 	int size;
+	bool punteada;
 public:
-	Cuadrilatero(int, int, int, int, int);
+	Cuadrilatero(int, int, int, int, int,bool);
 	Cuadrilatero();
 	~Cuadrilatero();
 	void set_coords(int, int, int, int, int);

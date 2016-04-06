@@ -468,7 +468,7 @@ void mouse(int btn, int state, int x, int y)
 					if(render->a2 > render->wh/10+1 && render->wh/10 < render->b2 && render->b2 < render->wh-31)
 					{
 						//render->draw_rectangle(render->a1,render->a2,render->b1,render->b2,m);
-						Cuadrilatero cuadrilatero(render->a1,render->a2,render->b1,render->b2,render->size);
+						Cuadrilatero cuadrilatero(render->a1,render->a2,render->b1,render->b2,render->size,render->punteada);
 						v_Cuadrilateros.push_back(cuadrilatero);
 						render->reset();
 						display();
