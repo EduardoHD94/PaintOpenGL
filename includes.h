@@ -36,6 +36,7 @@ int i, j, k;
 float textx,texty, textz=0.0;
 
 int save=0;
+int contador = 0;
 
 char* image;
 bool punteada = false;
@@ -521,11 +522,13 @@ void mouse(int btn, int state, int x, int y)
 				{
 					if(render->a2>render->wh/10+1 && render->wh/10<render->b2 && render->b2<render->wh-31)
 					{
+						contador++;
 						glLineWidth(render->size);
 						glBegin(GL_LINES);
 							glVertex2f(render->a2, render->b2);
 							glVertex2f(render->a1, render->b1);
 						glEnd();
+						cout << contador << endl;
 					}
 				}
 			}
@@ -547,7 +550,7 @@ void mouse(int btn, int state, int x, int y)
 					if(render->a2>render->wh/10+1 && render->wh/10<render->b2 && render->b2<render->wh-31)
 					{
 						r=sqrt((render->a1-render->a2)*(render->a1-render->a2)+(render->b1-render->b2)*(render->b1-render->b2));
-						Circulo circulo(render->a2,render->b2,r,render->size, render->punteada);
+						Circulo circulo(render->a2,render->b2,r,render->size);
 						v_Circulos.push_back(circulo);
 						/*
 						n++;
