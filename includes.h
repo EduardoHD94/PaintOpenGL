@@ -154,7 +154,7 @@ void display()
 	render->draw_btn_pencil();
 	render->draw_btn_eraser();
 	render->draw_btn_pencil2();
-	render->draw_btn_circle();		
+	render->draw_btn_circle();		 
     render->draw_btn_air_brush();
 	render->draw_btn_fill_color();
 	render->draw_btn_brush();
@@ -166,6 +166,7 @@ void display()
 	render->draw_btn_vertex_decrement();
 	render->draw_btn_show_size();
 	render->draw_btn_show_vertex();
+	render->draw_btn_poligono();
 	render->draw_size();
 	render->draw_vertex();
 	render->set_font(GLUT_BITMAP_HELVETICA_12);

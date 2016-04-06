@@ -17,7 +17,7 @@ public:
 	int wx;
 	int wy;
 	int wx1;
-	int wy1;
+	int wy1; 
 	bool punteada;
 	void *currentFont;
 	
@@ -80,6 +80,8 @@ public:
 	void draw_btn_vertex_decrement();
 	void draw_btn_show_size();
 	void draw_btn_show_vertex();
+	void draw_btn_poligono();
+	void regularPolygon(int, int, int);
 	void draw_size();
 	void draw_vertex();
 

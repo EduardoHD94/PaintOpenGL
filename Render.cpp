@@ -6,12 +6,13 @@
 #include <sstream>
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 
 using namespace std;
 
 Render::Render()
 {
-	wh  = 600;
+	wh  = 600; 
 	ww  = 800;
 	wx1 = 800;
 	wy1 = 600;
@@ -368,8 +369,8 @@ void Render::draw_toolbox()
 	glBegin(GL_QUADS);                            
 		glVertex2f(2, wh-(wh/20)-1);
 		glVertex2f(wh/10-2, wh-(wh/20)-1);
-		glVertex2f(wh/10-2,9*wh/20);
-		glVertex2f(2, 9*wh/20);
+		glVertex2f(wh/10-2,7*wh/20);
+		glVertex2f(2, 7*wh/20);
 	glEnd();
 
 	
@@ -377,14 +378,14 @@ void Render::draw_toolbox()
 	glBegin(GL_LINE_LOOP);                            
 		glVertex2f(2, wh-(wh/20)-1);
 		glVertex2f(wh/10-2, wh-(wh/20)-1);
-		glVertex2f(wh/10-2,9*wh/20);
-		glVertex2f(2, 9*wh/20);
+		glVertex2f(wh/10-2,7*wh/20);
+		glVertex2f(2, 7*wh/20);
 	glEnd();
 
 	set_color(0, 0, 0);
 	glBegin(GL_LINES);
 		glVertex2f(wh/20, wh-(wh/20)-1);
-		glVertex2f(wh/20, 9*wh/20);
+		glVertex2f(wh/20, 11*wh/20);
 
 		glVertex2f(2, 18*wh/20);
 		glVertex2f(wh/10-2, 18*wh/20);
@@ -412,6 +413,12 @@ void Render::draw_toolbox()
 
 		glVertex2f(2, 10*wh/20);
 		glVertex2f(wh/10-2, 10*wh/20);
+
+		glVertex2f(2, 9*wh/20);
+		glVertex2f(wh/10-2, 9*wh/20);
+
+		glVertex2f(2, 8*wh/20);
+		glVertex2f(wh/10-2, 8*wh/20);
 	glEnd();
 	
 }
@@ -740,12 +747,53 @@ void Render::draw_btn_vertex_decrement()
 
 void Render::draw_btn_show_size()
 {
-	drawstring(1.1*wh/120, 10.4*wh/20, 0.0, "size:",0,0,0);
+	drawstring(1.1*wh/120, 10.4*wh/20, 0.0, "size: ",0,0,0);
 }
 
 void Render::draw_btn_show_vertex()
 {
-	drawstring(1.1*wh/120, 9.4*wh/20, 0.0, "lados:",0,0,0);
+	drawstring(1.3*wh/120, 9.4*wh/20, 0.0, "lados: ",0,0,0);
+}
+
+void Render::draw_btn_poligono()
+{
+	regularPolygon(6.0*wh/120, 8.5*wh/20,10);
+}
+
+void Render::regularPolygon(int x, int y, int radius)
+{
+	  double PI = 3.14;
+      int xa[vertices],ya[vertices];
+      double alfa = (2 * PI )/vertices;
+
+      for (int a=0 ; a<vertices ; a++)
+      {
+           xa[a] = x + (radius * cos((a-1)*alfa));
+           ya[a] = y + (radius * sin((a-1)*alfa));
+           /*printf("linea %d\n",a );
+           printf("x:%d\n",xa[a] );
+           printf("y: %d\n\n",ya[a] );*/
+
+      }
+
+      for(int a=0;a<vertices;a++)
+      {
+        if(a==vertices-1)
+        {
+        	glBegin(GL_LINES);
+				glVertex2f(xa[a],ya[a]);
+				glVertex2f(xa[0],ya[0]);
+			glEnd();
+        }
+        else
+        {
+        	glBegin(GL_LINES);
+				glVertex2f(xa[a],ya[a]);
+				glVertex2f(xa[a+1],ya[a+1]);
+			glEnd();
+        }
+      }
+
 }
 
 void Render::draw_size()
@@ -763,7 +811,7 @@ void Render::draw_vertex()
 	stringstream out2;
 	out2 << vertices;
 	ss = out2.str();
-	drawstring(7.0*wh/120, 9.4*wh/20, 0.0, ss,0,0,0);	
+	drawstring(8.0*wh/120, 9.4*wh/20, 0.0, ss,0,0,0);	
 }
 
 void Render::increment_vertex()
