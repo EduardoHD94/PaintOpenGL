@@ -761,15 +761,58 @@ void Render::draw_btn_poligono()
 }
 
 void Render::regularPolygon(int x, int y, int radius)
+{	  
+	  double PI = 3.14;
+      int xa[vertices],ya[vertices];
+      double alfa = (2 * PI )/vertices;
+    
+
+      for (int a=0 ; a<vertices ; a++)
+      {
+           xa[a] = x + (radius * cos((a-1)*alfa));
+           ya[a] = y + (radius * sin((a-1)*alfa));
+           /*printf("linea %d\n",a );
+           printf("x:%d\n",xa[a] );
+           printf("y: %d\n\n",ya[a] );*/
+
+      }
+
+      for(int a=0;a<vertices;a++)
+      {
+        if(a==vertices-1)
+        {
+        	glBegin(GL_LINES);
+				glVertex2f(xa[a],ya[a]);
+				glVertex2f(xa[0],ya[0]);
+			glEnd();
+        }
+        else
+        {
+        	glBegin(GL_LINES);
+				glVertex2f(xa[a],ya[a]);
+				glVertex2f(xa[a+1],ya[a+1]);
+			glEnd();
+        }
+      }
+
+}
+							  //a1    a2      b1      b2
+void Render::regularPolygon2(int x, int y, int x2, int y2)
 {
+	int rx= x - x2; //xp[1]-xp[0];
+    int ry = y - y2;//yp[1]-yp[0];
+    rx= pow(rx,2);
+    ry = pow (ry,2);
+    int radius = sqrt(rx+ry);
+
 	  double PI = 3.14;
       int xa[vertices],ya[vertices];
       double alfa = (2 * PI )/vertices;
 
       for (int a=0 ; a<vertices ; a++)
       {
-           xa[a] = x + (radius * cos((a-1)*alfa));
-           ya[a] = y + (radius * sin((a-1)*alfa));
+           xa[a] = rx + (radius * cos((a-1)*alfa));
+           ya[a] = ry + (radius * sin((a-1)*alfa));
            /*printf("linea %d\n",a );
            printf("x:%d\n",xa[a] );
            printf("y: %d\n\n",ya[a] );*/

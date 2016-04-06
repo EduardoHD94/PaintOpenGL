@@ -379,6 +379,19 @@ void mouse(int btn, int state, int x, int y)
 			display();
 		}
 
+		/*Seleccionar Poligono lados*/
+		else if(2<x && x<render->wh/20 && 10*render->wh/20<render->wh-y && render->wh-y<11*render->wh/20)                    
+		{
+			render->reset();
+			draw = 11;
+		}
+
+		/*Seleccionar Poligono lados*/
+		else if(render->wh/20<x && x<render->wh/10-2 && 10*render->wh/20<render->wh-y && render->wh-y<11*render->wh/20)            
+		{
+			render->reset();
+			draw = 11;
+		}
 
 		 if(draw==1)         /* to draw using a  PENCIL  */
 		{
@@ -626,6 +639,44 @@ void mouse(int btn, int state, int x, int y)
 			if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
 				glutMotionFunc(paint);
 
+		}
+
+		/* to draw a Poligono */
+		else if(draw==11)  
+		{
+			if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
+			{
+				render->drawpoint(x, y);
+				render->a2=render->a1;
+				render->b2=render->b1;
+				render->a1=x;
+				render->b1=render->wh-y;       
+
+				if(render->a1>render->wh/10+1 && render->wh/10<render->b1 && render->b1<render->wh-31)
+				{
+					if(render->a2>render->wh/10+1 && render->wh/10<render->b2 && render->b2<render->wh-31)
+					{
+						if(punteada)
+						{
+							//Linea linea(render->a1,render->a2,render->b1,render->b2,render->size,render->punteada);
+							//v_Lineas.push_back(linea);
+							render->regularPolygon(render->a1, render->b1, render->b1 - render->a1);//, render->b2);
+							render->reset();
+							//display();
+							//render->draw_lines(render->a1,render->a2,punteada);
+						}
+						else
+						{
+							//Linea linea(render->a1,render->a2,render->b1,render->b2,render->size,render->punteada);
+							//v_Lineas.push_back(linea);
+							render->regularPolygon(render->a1, render->b1, render->b1 - render->a1);//, render->b2);
+							render->reset();
+							//display();
+							//render->draw_lines(render->a1,render->a2,punteada);
+						}
+					}
+				}
+			}
 		}
 
 		else if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)

@@ -82,6 +82,7 @@ public:
 	void draw_btn_show_vertex();
 	void draw_btn_poligono();
 	void regularPolygon(int, int, int);
+	void regularPolygon2(int, int, int, int);
 	void draw_size();
 	void draw_vertex();
 
