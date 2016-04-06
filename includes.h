@@ -13,6 +13,7 @@
 #include "Linea.h"
 #include "Punto.h"
 #include "Triangulo.h"
+#include "Color.h"
 #include <vector>
 
  
