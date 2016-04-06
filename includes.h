@@ -14,6 +14,7 @@
 #include "Punto.h"
 #include "Triangulo.h"
 #include "Color.h"
+#include "Poligono.h"
 #include <vector>
 
  
@@ -54,6 +55,7 @@ vector<Cuadrilatero> v_Cuadrilateros;
 vector<Circulo> v_Circulos;
 vector<Linea> v_Lineas;
 vector<Punto> v_Puntos;
+vector<Poligono> v_Poligonos;
 /*FinVectores*/
 
 void eraser(int x, int y)  /* ERASER function */
@@ -188,6 +190,13 @@ void display()
 
 	 for(unsigned int i = 0; i < v_Puntos.size(); i++){
         v_Puntos.at(i).dibujaPunto(4);
+    }
+
+	 for(unsigned int i = 0; i < v_Poligonos.size(); i++){
+        v_Poligonos.at(i).dibujaPoligono();
+    }
+	 for(unsigned int i = 0; i < v_Circulos.size(); i++){
+        v_Circulos.at(i).dibujaCirculo();
     }
 
 	glFlush();
@@ -380,14 +389,14 @@ void mouse(int btn, int state, int x, int y)
 		}
 
 		/*Seleccionar Poligono lados*/
-		else if(2<x && x<render->wh/20 && 10*render->wh/20<render->wh-y && render->wh-y<11*render->wh/20)                    
+		else if(2<x && x<render->wh/20 && 8*render->wh/20<render->wh-y && render->wh-y<9*render->wh/20)                    
 		{
 			render->reset();
 			draw = 11;
 		}
 
 		/*Seleccionar Poligono lados*/
-		else if(render->wh/20<x && x<render->wh/10-2 && 10*render->wh/20<render->wh-y && render->wh-y<11*render->wh/20)            
+		else if(render->wh/20<x && x<render->wh/10-2 && 8*render->wh/20<render->wh-y && render->wh-y<9*render->wh/20)            
 		{
 			render->reset();
 			draw = 11;
@@ -538,7 +547,9 @@ void mouse(int btn, int state, int x, int y)
 					if(render->a2>render->wh/10+1 && render->wh/10<render->b2 && render->b2<render->wh-31)
 					{
 						r=sqrt((render->a1-render->a2)*(render->a1-render->a2)+(render->b1-render->b2)*(render->b1-render->b2));
-						render->draw_circle(render->a2, render->b2, r);
+						Circulo circulo(render->a2,render->b2,r,render->size, render->punteada);
+						v_Circulos.push_back(circulo);
+						/*
 						n++;
 						render->b[n][0]=render->a2;
 						render->b[n][1]=render->b2;
@@ -547,8 +558,9 @@ void mouse(int btn, int state, int x, int y)
 						render->b[n][1]=render->b1;
 						n++;
 						render->b[n][0]='$';
-						render->b[n][1]='$';
+						render->b[n][1]='$';*/
 						render->reset();
+						display();
 					}
 				}
 			}
@@ -646,7 +658,7 @@ void mouse(int btn, int state, int x, int y)
 		{
 			if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
 			{
-				render->drawpoint(x, y);
+				//render->drawpoint(x, y);
 				render->a2=render->a1;
 				render->b2=render->b1;
 				render->a1=x;
@@ -658,20 +670,22 @@ void mouse(int btn, int state, int x, int y)
 					{
 						if(punteada)
 						{
+							Poligono poligono(render->a1, render->a2, render->b1, render->b2,render->vertices, render->size, render->punteada);
+							v_Poligonos.push_back(poligono);
+
 							//Linea linea(render->a1,render->a2,render->b1,render->b2,render->size,render->punteada);
 							//v_Lineas.push_back(linea);
-							render->regularPolygon(render->a1, render->b1, render->b1 - render->a1);//, render->b2);
+							//render->regularPolygon2(render->a1, render->a2, render->b1, render->b2);//, render->b2);
 							render->reset();
-							//display();
+							display();
 							//render->draw_lines(render->a1,render->a2,punteada);
 						}
 						else
 						{
-							//Linea linea(render->a1,render->a2,render->b1,render->b2,render->size,render->punteada);
-							//v_Lineas.push_back(linea);
-							render->regularPolygon(render->a1, render->b1, render->b1 - render->a1);//, render->b2);
+							Poligono poligono(render->a1, render->a2, render->b1, render->b2,render->vertices, render->size, render->punteada);
+							v_Poligonos.push_back(poligono);
 							render->reset();
-							//display();
+							display();
 							//render->draw_lines(render->a1,render->a2,punteada);
 						}
 					}
@@ -721,6 +735,7 @@ void mouse(int btn, int state, int x, int y)
 			v_Triangulos.clear();
 			v_Puntos.clear();
 			v_Circulos.clear(); 
+			v_Poligonos.clear(); 
 			render->lineaPunteada(false);
 
 			for(i=1;i<=n;i++)
