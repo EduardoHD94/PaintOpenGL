@@ -42,11 +42,6 @@ int Render::get_ww()
 void Render::reset()
 {
 	a1 = a2 = a3 = b1 = b2 = b3 = 0;
-	/*
-	r = r;
-	g = g;
-	b = b;
-	*/
 }
 
 void Render::set_ww(int ww)
@@ -107,7 +102,8 @@ void Render::edgedetect(float x1, float y1, float x2, float y2, int *le, int *re
 }
 
 
-void Render::scanfill(int num1, int num2)         /* to FILL  a Polygon using SCAN LINE ALGORITHM*/
+/* Llenar poligono mediante algoritmo de scaneo de linea*/
+void Render::scanfill(int num1, int num2)        
 {
 	int le[1000], re[1000];
 	int p, q;
@@ -253,14 +249,13 @@ void Render::drawstring(float x,float y,float z,string s, float r, float g, floa
 
 void Render::draw_toolbar()
 {
-	
-	//glColor3f(0.5, 1.0, 0.0);
+
 	set_color(207, 219, 173);
 	glPointSize(1);
 	glLineWidth(1);
-	glRectf(0,wh/10+1,wh/10,wh-(wh/20)-1);      /* to draw the TOOL BAR */
-	glRectf(0, 0, ww, wh/10);                 /* to draw COLOR AREA */
-	glRectf(0,wh-(wh/20), ww, wh);              /* to draw MENU BAR*/
+	glRectf(0,wh/10+1,wh/10,wh-(wh/20)-1);      /* dibujar barra de herramientas */
+	glRectf(0, 0, ww, wh/10);                 /* dibujar area de color */
+	glRectf(0,wh-(wh/20), ww, wh);              /* dibujar area de menu*/
 }
 void Render::draw_palette()
 {
@@ -320,7 +315,7 @@ void Render::draw_palette()
 
 }
 
-							// a2      b2       r
+
 void Render::draw_circle(float p, float q, float r)
 {
 	float d = 1-r;
@@ -339,7 +334,6 @@ void Render::draw_circle(float p, float q, float r)
 		++x;
 	}
 	plotpixels(p, q, x, y);
-
 }
 
 void Render::plotpixels(float p, float q, float x, float y)
@@ -518,13 +512,7 @@ void Render::draw_btn_triangle()
 		glVertex2f(5*wh/120, 17.2*wh/20);
 	glEnd();
 }
-/*void Render::draw_btn_circle()
-{
-	glBegin(GL_LINES);                           
-		glVertex2f(4*wh/60, 18.8*wh/20);
-		glVertex2f(5*wh/60, 18.2*wh/20);
-	glEnd();
-} */
+
 
 void Render::draw_btn_rectangle()
 {
@@ -656,18 +644,14 @@ void Render::draw_btn_fill_color()
 
 
 	set_color(0, 0, 0);
-
 	glPointSize(3);
 	glBegin(GL_POINTS);
 		glVertex2f(2*wh/120-2, 14.6*wh/20-2);
 	glEnd();
-
 	glPointSize(1.5);
 	glBegin(GL_POINTS);
 		glVertex2f(2*wh/120-2, 14.6*wh/20-6);
 	glEnd();
-
-
 }
 
 void Render::draw_btn_air_brush()
@@ -805,7 +789,8 @@ void Render::regularPolygon(int x, int y, int radius)
         }
       }
 
-}		
+}	
+
 
 void Render::draw_size()
 {
@@ -853,7 +838,7 @@ void Render::decrement_size()
 	else
 		size--;
 }
-
+/*
 void Render::draw_lines(float a1, float a2, bool punteada)
 {
 	if(punteada)
@@ -926,7 +911,7 @@ void Render::draw_rectangle(float a1, float a2, float b1, float b2, int m)
 	a[m][1]='$';
 	reset();
 }
-
+*/
 
 void Render::lineaPunteada(bool punteada)
 {

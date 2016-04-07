@@ -38,8 +38,6 @@ int save=0;
 char* image;
 bool punteada = false;
 
-//int count=0;
-
 /*Vectores*/
 vector<Triangulo> v_Triangulos;
 vector<Cuadrilatero> v_Cuadrilateros;
@@ -929,7 +927,6 @@ void mouse(int btn, int state, int x, int y)
 		/* para Abrir vectores  */
 		if(x>=6*render->wh/60 && x<=12*render->wh/60 && render->wh-y>=57*render->wh/60 && render->wh-y<=render->wh)  
 		{
-			//save=2;
 			cargarObjetos();	
 		}
 
@@ -937,8 +934,6 @@ void mouse(int btn, int state, int x, int y)
 		/* Para guardar los vectores */
 		else if(x>=12*render->wh/60 && x<=18*render->wh/60 && render->wh-y>=57*render->wh/60 && render->wh-y<=render->wh)
 		{
-			//save=1;
-
 			guardarVectores();
 			render->set_font(GLUT_BITMAP_9_BY_15);
 			render->set_color(0, 0, 0);
@@ -964,7 +959,6 @@ void mouse(int btn, int state, int x, int y)
 			for(i=1;i<=n;i++)
 				render->v[i][0]=render->v[i][1]=0;
 				m=n=0;
-			//	count=0;
 				render->size = 1;
 				display();
 		}

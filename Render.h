@@ -37,7 +37,6 @@ public:
 	void set_color(float, float, float);
 	void set_color_background(float, float, float, float);
 	void set_font(void *);
-	//colorbutton
 	void detect_point(int, int, int, int);
 	void edgedetect(float, float, float, float, int *, int *);
 	void eraser(int, int);
@@ -45,21 +44,18 @@ public:
 	void palette(float, float,float,float,float,float,float,float);
 	void scanfill(int, int);
 
-
 	void plotpixels(float, float, float, float);
 	void plotpixels1(float, float, float, float);
 	
 	void draw_toolbar();
 	void draw_palette();
 	void draw_toolbox();
-
 	void draw_circle(float, float, float);
 	
 	void draw_pixel(float, float);
 	void draw_pixel1(float, float);
-	
 	void drawpoint(int,int); 
-	//Buttons
+	//Botones dibujados en el toolbar
 	void draw_btn_air_brush();
 	void draw_btn_background();
 	void draw_btn_brush();
@@ -84,24 +80,24 @@ public:
 	void draw_size();
 	void draw_vertex();
 	void regularPolygon(int, int, int);
-	void regularPolygon2(int, int, int, int);
-
+	//Size
 	void decrement_size();
-	void decrement_vertex();
 	void increment_size();
+	//Numero de vertices
+	void decrement_vertex();
 	void increment_vertex();
-
-	//TEXT
+	//dibujar una cadena
 	void drawstring(float,float,float,string,float,float,float);
 
+	//Linea punteada
+	void lineaPunteada(bool);
 
+/*
 	void draw_lines(float,float,bool);
 	void draw_triangle(float,float,float,float,float,float,int);
 	void draw_rectangle(float,float,float,float,int);
+*/	
 
-	void lineaPunteada(bool);
-
-	 /* to draw the COLOR PALETTE */
 
 };
 
