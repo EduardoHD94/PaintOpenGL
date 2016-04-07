@@ -15,6 +15,8 @@ Circulo::Circulo(int p, int q, int r, int size, float rr, float g, float b)
 	this-> g = g;
 	this-> b = b;
 }
+
+/*Obtener la variable r de RGB*/
 float Circulo::get_r()
 {
 	return rr;

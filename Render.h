@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <string>
 using namespace std;
-
+ 
 class Render
 { 
 private:
@@ -91,14 +91,6 @@ public:
 
 	//Linea punteada
 	void lineaPunteada(bool);
-
-/*
-	void draw_lines(float,float,bool);
-	void draw_triangle(float,float,float,float,float,float,int);
-	void draw_rectangle(float,float,float,float,int);
-*/	
-
-
 };
 
 #endif

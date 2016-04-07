@@ -12,7 +12,7 @@
 #include "Cuadrilatero.h"
 #include "Linea.h"
 #include "Punto.h"
-#include "Triangulo.h"
+#include "Triangulo.h" 
 #include "Color.h"
 #include "Poligono.h"
 #include <vector>
@@ -31,12 +31,12 @@ ifstream in_stream; /* Para leer de un archivo de texto*/
 int draw;  /* Para saber que va a dibujar */
 int m, n;
 int i, j, k;
-int rr = 255, gg = 255, bb = 255; /*Color Background*/
+int rr = 255, gg = 255, bb = 255; 	/*Color Background formato RGB*/
 
 int save=0;
 
 char* image;
-bool punteada = false;
+bool punteada = false;				/* Para controlar el tipo punteado o de linea */
 
 /*Vectores*/
 vector<Triangulo> v_Triangulos;
@@ -47,9 +47,9 @@ vector<Punto> v_Puntos;
 vector<Poligono> v_Poligonos;
 /*FinVectores*/
 
-void guardarVectores()
+void guardarVectores()				/*Funcion que guarda los objetos dibujados en un archivo de texto*/
 {
-	system("> Vectores.txt");
+	system("> Vectores.txt");		/*Limpia el archivo de texto*/
     fout.open("Vectores.txt", ios::app); //escribe sobre el archivo no borra lo anterior
 
     if(fout.fail())
@@ -58,7 +58,7 @@ void guardarVectores()
         exit(1);
     }
 
-
+    /*Ciclo para guardar los objetos*/
     for(unsigned int i = 0; i < v_Cuadrilateros.size(); i++){
        fout << "C " << v_Cuadrilateros.at(i).get_x1() << " " << v_Cuadrilateros.at(i).get_x2() << 
        		   " " << v_Cuadrilateros.at(i).get_y1() << " " << v_Cuadrilateros.at(i).get_y2() << " " << v_Cuadrilateros.at(i).get_size() <<
@@ -117,7 +117,7 @@ void eraser(int x, int y)
 	}
 }
 
-/* Paint Brush */
+/* Brocha para Paint */
 void paint(int x, int y) 
 {
 	y=render->wh-y;
@@ -162,7 +162,7 @@ void myReshape(GLsizei w, GLsizei h)
 	glutPostRedisplay();
 }
 
-
+/*Guardar la imagen formato tga*/
 void guardaImagen (char filename[160], int x, int y)
 {
 	long imageSize = x * y * 3;
@@ -182,7 +182,7 @@ void guardaImagen (char filename[160], int x, int y)
 	data=NULL;
 }
 
-
+/*Funcion para mostrar todos los objetos del Paint*/
 void display()
 {
 
@@ -243,6 +243,7 @@ void display()
 	glFlush();
 }
 
+/*Cargar los objetos del archivo de texto*/
 void cargarObjetos()
 {
 	in_stream.open("Vectores.txt");
@@ -269,7 +270,6 @@ void cargarObjetos()
 		if(identificador == "C")
 		{
 			in_stream >> xC >> xC2 >> yC >> yC2 >> s >> p >> rC >> gC >> bC;
-		//	cout << xC << " " << xC2 << " " << yC << " " << yC2 << " " << s << " " <<  p << " " << rC << " " << gC << " " << bC << endl;
 			Cuadrilatero cuadrilatero(xC, xC2, yC, yC2, s, p, rC, gC, bC);
 			v_Cuadrilateros.push_back(cuadrilatero);
 		}
@@ -277,7 +277,6 @@ void cargarObjetos()
 		if(identificador == "L")
 		{
 			in_stream >> xL1 >> xL2 >> yL1 >> yL2 >> sL >> p >> rL >> gL >> bL;
-		//	cout << xL1 << " " << xL2 << " " << yL1 << " " << yL2 << " " << sL << " " <<  p << " " << rL << " " << gL << " " << bL << endl;
 			Linea linea(xL1, xL2, yL1, yL2, sL, p, rL, gL, bL);
 			v_Lineas.push_back(linea);
 		}
@@ -285,7 +284,6 @@ void cargarObjetos()
 		if(identificador == "P")
 		{
 			in_stream >> xP >> rX >> yP >> rY >> vP >> sP >> p >> rP >> gP >> bP;
-		//	cout << xP << " " << rX << " " << yP << " " << rY << " " << vP << " " <<  sP << " " << p << " " << rP << " " << gP << " " << bP << endl;
 			Poligono poligono(xP, rX, yP, rY, vP, sP, p, rP, gP, bP);
 			v_Poligonos.push_back(poligono);
 		}
@@ -293,7 +291,6 @@ void cargarObjetos()
 		if(identificador == "CR")
 		{
 			in_stream >>  pCR >> qCR >> rCIR >> sCR >> rCR >> gCR >> bCR;
-		//	cout << pCR << " " << qCR << " " << rCIR << " " << sCR << " " << rCR << " " <<  gCR << " " << bCR << endl;
 			Circulo circulo(pCR, qCR, rCIR, sCR, rCR, gCR, bCR);
 			v_Circulos.push_back(circulo);
 		}
@@ -301,7 +298,6 @@ void cargarObjetos()
 		if(identificador == "T")
 		{
 			in_stream >> x1T >> x2T >> x3T >> y1T >> y2T >> y3T >> sT >> p >> rT >> gT >> bT;
-		//	cout << x1T << " " << x2T << " " << x3T << " " << y1T << " " << y2T << " " <<  y2T << " " << y3T << " " << sT << " " << p << " " << rT << " " << gT << " " << bT << endl;
 			Triangulo triangulo(x1T, x2T, x3T, y1T, y2T, y3T, sT, p, rT, gT, bT);
 			v_Triangulos.push_back(triangulo);
 		}
@@ -312,6 +308,7 @@ void cargarObjetos()
 	in_stream.close();
 }
 
+/*Controlar las acciones del mouse para dibujar lo seleccionado*/
 void mouse(int btn, int state, int x, int y)
 {
 	GLfloat r, r1, r2;
@@ -763,13 +760,11 @@ void mouse(int btn, int state, int x, int y)
 				{
 					if(render->a2>render->wh/10+1 && render->wh/10<render->b2 && render->b2<render->wh-31)
 					{
-						//contador++;
 						glLineWidth(render->size);
 						glBegin(GL_LINES);
 							glVertex2f(render->a2, render->b2);
 							glVertex2f(render->a1, render->b1);
 						glEnd();
-					//	cout << contador << endl;
 					}
 				}
 			}
@@ -937,7 +932,7 @@ void mouse(int btn, int state, int x, int y)
 			guardarVectores();
 			render->set_font(GLUT_BITMAP_9_BY_15);
 			render->set_color(0, 0, 0);
-			//guardaImagen("Imagen.tga",800,600);
+			guardaImagen("Imagen.tga",800,600);
 		}
 
 
