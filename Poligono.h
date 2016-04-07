@@ -10,21 +10,33 @@ using namespace std;
 class Poligono
 {
 private:
-	int x, y;
-	int radioX, radioY; 
-	int vertices;
-	int size;
 	bool punteada;
+	float r,g,b;
+	int radioX, radioY; 
+	int size;
+	int vertices;
+	int x, y;
 public:
-	Poligono(int,int,int,int,int, int, bool);
-	Poligono();
-	void set_coords(int, int);
+
 	//void set_radio(int, int);
-	void dibujaPoligono();
-	int get_x();
-	int get_y();
 	int get_radioX();
 	int get_radioY();
+	int get_x();
+	int get_y();
+	int get_size();
+
+	bool get_punteada();
+	
+	float get_r();
+	float get_g();
+	float get_b();
+	int get_vertices();
+
+	Poligono();
+	Poligono(int,int,int,int,int, int, bool, float,float,float);
+	void dibujaPoligono();
+	void set_color(float, float, float);
+	void set_coords(int, int);
 };
 
 #endif

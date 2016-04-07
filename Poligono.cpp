@@ -5,7 +5,7 @@ using namespace std;
 
 Poligono::Poligono(){}
 
-Poligono::Poligono(int x, int radioX, int y, int radioY, int vertices, int size, bool punteada)
+Poligono::Poligono(int x, int radioX, int y, int radioY, int vertices, int size, bool punteada, float r, float g, float b)
 {
 	this-> x = x;
 	this-> y = y;
@@ -14,14 +14,50 @@ Poligono::Poligono(int x, int radioX, int y, int radioY, int vertices, int size,
 	this-> vertices = vertices;
 	this-> size = size;
 	this-> punteada = punteada;
+	this-> r = r;
+	this-> g = g;
+	this-> b = b;
 }
 
+int Poligono::get_size()
+{
+	return size;
+}
+
+bool Poligono::get_punteada()
+{
+	return punteada;
+}
+
+int Poligono::get_vertices()
+{
+	return vertices;
+}
+float Poligono::get_r()
+{
+	return r;
+}
+float Poligono::get_g()
+{
+	return g;
+}
+float Poligono::get_b()
+{
+	return r;
+}
 void Poligono::set_coords(int x, int y)
 {
 	this->x = x;
 	this->y = y;
 }
 
+void Poligono::set_color(float r, float g, float b)
+{
+	r = r / 255;
+	g = g / 255;
+	b = b / 255;
+	glColor3f(r, g, b);
+}
 void Poligono::dibujaPoligono()
 {
 	int rx= x - radioX; 
@@ -47,6 +83,7 @@ void Poligono::dibujaPoligono()
       	{	
 	        if(a==vertices-1)
 	        {
+	        	set_color(r,g,b);
 	        	glLineStipple(3,0xeeee);  
 				glEnable(GL_LINE_STIPPLE);
 	        	glLineWidth(size);
@@ -58,6 +95,7 @@ void Poligono::dibujaPoligono()
 	        }
 	        else
 	        {
+	        	set_color(r,g,b);
 	        	glLineStipple(3,0xeeee);  
 				glEnable(GL_LINE_STIPPLE);
 	        	glLineWidth(size);
@@ -72,6 +110,7 @@ void Poligono::dibujaPoligono()
 	    {
 	    	if(a==vertices-1)
 	        {
+	        	set_color(r,g,b);
 	        	glLineWidth(size);
 	        	glBegin(GL_LINES);
 					glVertex2f(xa[a],ya[a]);
@@ -81,6 +120,7 @@ void Poligono::dibujaPoligono()
 	        }
 	        else
 	        {
+	        	set_color(r,g,b);
 	        	glLineWidth(size);
 	        	glBegin(GL_LINES);
 					glVertex2f(xa[a],ya[a]);

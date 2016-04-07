@@ -4,7 +4,7 @@ using namespace std;
 
 Cuadrilatero::Cuadrilatero(){}
 
-Cuadrilatero::Cuadrilatero(int x1, int x2, int y1, int y2, int size, bool punteada)
+Cuadrilatero::Cuadrilatero(int x1, int x2, int y1, int y2, int size, bool punteada, float r, float g, float b)
 {
 	this-> x1 = x1;
 	this-> x2 = x2;
@@ -12,6 +12,9 @@ Cuadrilatero::Cuadrilatero(int x1, int x2, int y1, int y2, int size, bool puntea
 	this-> y2 = y2;
 	this-> size = size;
 	this-> punteada = punteada;
+	this-> r = r;
+	this-> g = g;
+	this-> b = b;
 }
 
 Cuadrilatero::~Cuadrilatero()
@@ -22,6 +25,32 @@ Cuadrilatero::~Cuadrilatero()
 	cout << "punteada" << punteada << endl;
     cout << "Cuadrilatero eliminado" << endl << endl;
 }
+
+int Cuadrilatero::get_size(){return size;}
+
+bool Cuadrilatero::get_punteada(){return punteada;}
+
+float Cuadrilatero::get_r()
+{
+	return r;
+}
+float Cuadrilatero::get_g()
+{
+	return g;
+}
+float Cuadrilatero::get_b()
+{
+	return r;
+}
+
+void Cuadrilatero::set_color(float r, float g, float b)
+{
+	r = r / 255;
+	g = g / 255;
+	b = b / 255;
+	glColor3f(r, g, b);
+};
+
 
 void Cuadrilatero::set_coords(int x1, int x2, int y1, int y2, int size)
 {
@@ -37,6 +66,7 @@ void Cuadrilatero::dibujaCuadrilatero()
 
 	if(punteada)
 	{
+		set_color(r,g,b);
 		glLineStipple(3,0xeeee);  
 		glEnable(GL_LINE_STIPPLE);
 		glLineWidth(size);
@@ -50,6 +80,7 @@ void Cuadrilatero::dibujaCuadrilatero()
 	}
 	else
 	{
+		set_color(r,g,b);
 		glLineWidth(size);
 		glBegin(GL_LINE_LOOP);
 			glVertex2f(x2, y2);

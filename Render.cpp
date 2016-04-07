@@ -42,9 +42,11 @@ int Render::get_ww()
 void Render::reset()
 {
 	a1 = a2 = a3 = b1 = b2 = b3 = 0;
+	/*
 	r = r;
 	g = g;
 	b = b;
+	*/
 }
 
 void Render::set_ww(int ww)
