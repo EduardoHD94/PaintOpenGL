@@ -43,7 +43,7 @@ float Poligono::get_g()
 }
 float Poligono::get_b()
 {
-	return r;
+	return b;
 }
 void Poligono::set_coords(int x, int y)
 {

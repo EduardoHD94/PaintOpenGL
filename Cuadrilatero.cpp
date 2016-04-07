@@ -23,6 +23,7 @@ Cuadrilatero::~Cuadrilatero()
 	cout << "(" << x1 << "," << y1 << ")\n(" << x2 << "," << y2 << ")" << endl;
 	cout << "Size: " << size << endl;
 	cout << "punteada" << punteada << endl;
+	cout << "RGB " << r << " " << g << " " <<b<<endl;
     cout << "Cuadrilatero eliminado" << endl << endl;
 }
 
@@ -40,7 +41,7 @@ float Cuadrilatero::get_g()
 }
 float Cuadrilatero::get_b()
 {
-	return r;
+	return b;
 }
 
 void Cuadrilatero::set_color(float r, float g, float b)

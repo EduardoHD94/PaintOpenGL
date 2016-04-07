@@ -47,7 +47,7 @@ float Linea::get_g()
 }
 float Linea::get_b()
 {
-	return r;
+	return b;
 }
 
 void Linea::set_coords(int x1, int x2, int y1, int y2)

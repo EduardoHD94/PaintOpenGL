@@ -17,6 +17,7 @@
 #include "Poligono.h"
 #include <vector>
 #include <fstream>
+#include <string>
 
  
 #define ESPACIADO 0xeeee
@@ -30,6 +31,7 @@ Render *render = new Render();
 //Triangulo *dos = new Triangulo(200, 200, 230,  230, 260, 260);
 
 ofstream fout;
+ifstream in_stream;
 
 int draw;  /* to store draw option*/
 int m, n;
@@ -65,8 +67,7 @@ vector<Poligono> v_Poligonos;
 
 void guardarVectores()
 {
-	//in_stream.open("InputNumbers.txt");
-    fout.open("OutputNumbers.txt", ios::app); //escribe sobre el archivo no borra lo anterior
+    fout.open("Vectores.txt", ios::app); //escribe sobre el archivo no borra lo anterior
 
     if(fout.fail())
     {
@@ -75,56 +76,41 @@ void guardarVectores()
     }
 
 
-    fout << "Cuadrilatero" << endl;
-     for(unsigned int i = 0; i < v_Cuadrilateros.size(); i++){
-       fout << v_Cuadrilateros.at(i).get_x1() << " " << v_Cuadrilateros.at(i).get_x1() << 
+    for(unsigned int i = 0; i < v_Cuadrilateros.size(); i++){
+       fout << "C " << v_Cuadrilateros.at(i).get_x1() << " " << v_Cuadrilateros.at(i).get_x2() << 
        		 " " << v_Cuadrilateros.at(i).get_y1() << " " << v_Cuadrilateros.at(i).get_y2() << " " << v_Cuadrilateros.at(i).get_size() <<
        		 " " << v_Cuadrilateros.at(i).get_punteada() << " " << v_Cuadrilateros.at(i).get_r() << 
        		 " " << v_Cuadrilateros.at(i).get_g() << " " << v_Cuadrilateros.at(i).get_b() << endl;
 
     }
-    fout << "FinCuadrilatero" << endl;
 
- 	fout << "Linea" << endl;
     for(unsigned int i = 0; i < v_Lineas.size(); i++){
-    	fout << v_Lineas.at(i).get_x1() << " " << v_Lineas.at(i).get_x1() << 
+    	fout <<"L " << v_Lineas.at(i).get_x1() << " " << v_Lineas.at(i).get_x2() << 
        		 " " << v_Lineas.at(i).get_y1() << " " << v_Lineas.at(i).get_y2() << " " << v_Lineas.at(i).get_size() <<
        		 " " << v_Lineas.at(i).get_punteada() << " " << v_Lineas.at(i).get_r() << 
        		 " " << v_Lineas.at(i).get_g() << " " << v_Lineas.at(i).get_b() << endl;
     }
-    fout << "FinLinea" << endl;
  
- 	fout << "Poligono" << endl;
- 	
  	for(unsigned int i = 0; i < v_Poligonos.size(); i++){
- 	 	fout << v_Poligonos.at(i).get_x() << " " << v_Poligonos.at(i).get_radioX() << 
+ 	 	fout << "P " << v_Poligonos.at(i).get_x() << " " << v_Poligonos.at(i).get_radioX() << 
        	 " " << v_Poligonos.at(i).get_y() << " " << v_Poligonos.at(i).get_radioY() << " " << v_Poligonos.at(i).get_vertices() <<
        	 " " << v_Poligonos.at(i).get_size() <<
        	 " " << v_Poligonos.at(i).get_punteada() << " " << v_Poligonos.at(i).get_r() << 
        	 " " << v_Poligonos.at(i).get_g() << " " << v_Poligonos.at(i).get_b() << endl;
     }
- 	fout << "FinPoligono" << endl;
-
- 	fout << "Circulo" << endl;
 
   	for(unsigned int i = 0; i < v_Circulos.size(); i++){
- 	 	fout << v_Circulos.at(i).get_p() << " " << v_Circulos.at(i).get_q() << 
-       	 " " << v_Circulos.at(i).get_radio() << " " << v_Circulos.at(i).get_size() << " " <<
+ 	 	fout << "CR " << v_Circulos.at(i).get_p() << " " << v_Circulos.at(i).get_q() << 
+       	 " " << v_Circulos.at(i).get_radio() << " " << v_Circulos.at(i).get_size() <<
        	 " " << v_Circulos.at(i).get_r() << " " << v_Circulos.at(i).get_g() << " " << v_Circulos.at(i).get_b() << endl;
     }
 
- 	fout << "FinCirculo" << endl;
-
- 	fout << "Triangulo" << endl;
  	for(unsigned int i = 0; i < v_Triangulos.size(); i++){
-       fout << v_Triangulos.at(i).get_x1() << " " << v_Triangulos.at(i).get_x2() << " " << v_Triangulos.at(i).get_x3() << " " 
+       fout << "T " << v_Triangulos.at(i).get_x1() << " " << v_Triangulos.at(i).get_x2() << " " << v_Triangulos.at(i).get_x3() << " " 
        		<< v_Triangulos.at(i).get_y1() << " " << v_Triangulos.at(i).get_y2() << " " << v_Triangulos.at(i).get_y3() << " "
        		<< v_Triangulos.at(i).get_size() <<	" " << v_Triangulos.at(i).get_punteada() << " " 
        		<< v_Triangulos.at(i).get_r() <<  " " << v_Triangulos.at(i).get_g() << " " << v_Triangulos.at(i).get_b() << endl;
     }
-
- 	fout << "FinTriangulo" << endl;
-
 
     fout.close();
 }
@@ -273,6 +259,75 @@ void display()
 	glFlush();
 }
 
+void cargarObjetos()
+{
+	in_stream.open("Vectores.txt");
+	string identificador;
+	bool p; 
+	int xC, xC2, yC, yC2, s; 
+	float rC, gC, bC; 
+	
+	int xL1, xL2, yL1, yL2, sL;
+	float rL, gL, bL;
+	
+	int xP, rX, yP, rY, vP, sP;
+	float rP, gP, bP;
+	
+	int pCR, qCR, rCIR, sCR;
+	float rCR, gCR, bCR;
+
+	int x1T, x2T, x3T, y1T, y2T, y3T, sT; 
+	float rT, gT, bT;
+
+	while(! in_stream.eof() )
+	{
+		in_stream >> identificador;
+		if(identificador == "C")
+		{
+			in_stream >> xC >> xC2 >> yC >> yC2 >> s >> p >> rC >> gC >> bC;
+			cout << xC << " " << xC2 << " " << yC << " " << yC2 << " " << s << " " <<  p << " " << rC << " " << gC << " " << bC << endl;
+			Cuadrilatero cuadrilatero(xC, xC2, yC, yC2, s, p, rC, gC, bC);
+			v_Cuadrilateros.push_back(cuadrilatero);
+		}
+
+		if(identificador == "L")
+		{
+			in_stream >> xL1 >> xL2 >> yL1 >> yL2 >> sL >> p >> rL >> gL >> bL;
+			cout << xL1 << " " << xL2 << " " << yL1 << " " << yL2 << " " << sL << " " <<  p << " " << rL << " " << gL << " " << bL << endl;
+			Linea linea(xL1, xL2, yL1, yL2, sL, p, rL, gL, bL);
+			v_Lineas.push_back(linea);
+		}
+
+		if(identificador == "P")
+		{
+			in_stream >> xP >> rX >> yP >> rY >> vP >> sP >> p >> rP >> gP >> bP;
+			cout << xP << " " << rX << " " << yP << " " << rY << " " << vP << " " <<  sP << " " << p << " " << rP << " " << gP << " " << bP << endl;
+			Poligono poligono(xP, rX, yP, rY, vP, sP, p, rP, gP, bP);
+			v_Poligonos.push_back(poligono);
+		}
+
+		if(identificador == "CR")
+		{
+			in_stream >>  pCR >> qCR >> rCIR >> sCR >> rCR >> gCR >> bCR;
+			cout << pCR << " " << qCR << " " << rCIR << " " << sCR << " " << rCR << " " <<  gCR << " " << bCR << endl;
+			Circulo circulo(pCR, qCR, rCIR, sCR, rCR, gCR, bCR);
+			v_Circulos.push_back(circulo);
+		}
+
+		if(identificador == "T")
+		{
+			in_stream >> x1T >> x2T >> x3T >> y1T >> y2T >> y3T >> sT >> p >> rT >> gT >> bT;
+			cout << x1T << " " << x2T << " " << x3T << " " << y1T << " " << y2T << " " <<  y2T << " " << y3T << " " << sT << " " << p << " " << rT << " " << gT << " " << bT << endl;
+			Triangulo triangulo(x1T, x2T, x3T, y1T, y2T, y3T, sT, p, rT, gT, bT);
+			v_Triangulos.push_back(triangulo);
+		}
+	}
+
+	display();
+	
+	in_stream.close();
+}
+
 void mouse(int btn, int state, int x, int y)
 {
 	GLfloat r, r1, r2;
@@ -293,7 +348,7 @@ void mouse(int btn, int state, int x, int y)
 			render->r = 0;
 			render->b = 0;
 			render->g = 0;
-			cout << render -> g << " " << render->g << " " << render->b << endl;
+			cout << render -> r << " " << render->g << " " << render->b << endl;
 		}
 
 		else if(6*render->wh/60<x && x<8*render->wh/60 && render->wh/20<render->wh-y && render->wh-y<render->wh/12)
@@ -302,7 +357,7 @@ void mouse(int btn, int state, int x, int y)
 			render->r = 255;
 			render->g = 255;
 			render->b = 255;
-			cout << render -> g << " " << render->g << " " << render->b << endl;
+			cout << render -> r << " " << render->g << " " << render->b << endl;
 		}
 
 		else if(8*render->wh/60<x && x<10*render->wh/60 && render->wh/60<render->wh-y && render->wh-y<render->wh/20)
@@ -311,7 +366,7 @@ void mouse(int btn, int state, int x, int y)
 	         render-> r = 239;
 	         render-> g = 223;
 	         render-> b = 132;
-	         cout << render -> g << " " << render->g << " " << render->b << endl;
+	         cout << render -> r << " " << render->g << " " << render->b << endl;
 		}
 
 		else if(8*render->wh/60<x && x<10*render->wh/60 && render->wh/20<render->wh-y && render->wh-y<render->wh/12)
@@ -320,7 +375,7 @@ void mouse(int btn, int state, int x, int y)
 		     render-> r = 232;
 		     render-> g = 99;
 		     render-> b = 113;
-		     cout << render -> g << " " << render->g << " " << render->b << endl;
+		     cout << render -> r << " " << render->g << " " << render->b << endl;
 		}
 
 		else if(10*render->wh/60<x && x<12*render->wh/60 && render->wh/60<render->wh-y && render->wh-y<render->wh/20)
@@ -329,7 +384,7 @@ void mouse(int btn, int state, int x, int y)
 		     render-> r = 80;
 		     render-> g = 186;
 		     render-> b = 188;
-		     cout << render -> g << " " << render->g << " " << render->b << endl;
+		     cout << render -> r << " " << render->g << " " << render->b << endl;
 		}
 
 		else if(10*render->wh/60<x && x<12*render->wh/60 && render->wh/20<render->wh-y && render->wh-y<render->wh/12)
@@ -338,7 +393,7 @@ void mouse(int btn, int state, int x, int y)
 		     render-> r = 161;
 		     render-> g = 185;	
 		     render-> b = 196;
-		     cout << render -> g << " " << render->g << " " << render->b << endl;
+		     cout << render -> r << " " << render->g << " " << render->b << endl;
 		}
 
 		else if(12*render->wh/60<x && x<14*render->wh/60 && render->wh/60<render->wh-y && render->wh-y<render->wh/20)
@@ -347,7 +402,7 @@ void mouse(int btn, int state, int x, int y)
 			 render-> r = 241;
 			 render-> g = 144;
 			 render-> b = 86;
-			 cout << render -> g << " " << render->g << " " << render->b << endl;
+			 cout << render -> r << " " << render->g << " " << render->b << endl;
 		}
 
 		else if(12*render->wh/60<x && x<14*render->wh/60 && render->wh/20<render->wh-y && render->wh-y<render->wh/12)
@@ -356,7 +411,7 @@ void mouse(int btn, int state, int x, int y)
 			 render-> r = 180;
 			 render-> g = 231;
 			 render-> b = 254;
-			 cout << render -> g << " " << render->g << " " << render->b << endl;
+			 cout << render -> r << " " << render->g << " " << render->b << endl;
 		}
 
 		else if(14*render->wh/60<x && x<16*render->wh/60 && render->wh/60<render->wh-y && render->wh-y<render->wh/20)
@@ -365,7 +420,7 @@ void mouse(int btn, int state, int x, int y)
 			render-> r = 203;
 			 render-> g = 143;
 			 render-> b = 244;
-			 cout << render -> g << " " << render->g << " " << render->b << endl;
+			 cout << render -> r << " " << render->g << " " << render->b << endl;
 		}
 
 		else if(14*render->wh/60<x && x<16*render->wh/60 && render->wh/20<render->wh-y && render->wh-y<render->wh/12)
@@ -374,7 +429,7 @@ void mouse(int btn, int state, int x, int y)
 			render-> r = 51;
 			 render-> g = 255;
 			 render-> b = 90;
-			 cout << render -> g << " " << render->g << " " << render->b << endl;
+			 cout << render -> r << " " << render->g << " " << render->b << endl;
 		}
 
 		else if(16*render->wh/60<x && x<18*render->wh/60 && render->wh/60<render->wh-y && render->wh-y<render->wh/20)
@@ -383,7 +438,7 @@ void mouse(int btn, int state, int x, int y)
 			render-> r = 254;
 			 render-> g = 139;
 			 render-> b = 180;
-			 cout << render -> g << " " << render->g << " " << render->b << endl;
+			 cout << render -> r << " " << render->g << " " << render->b << endl;
 		}
 
 		else if(16*render->wh/60<x && x<18*render->wh/60 && render->wh/20<render->wh-y && render->wh-y<render->wh/12)
@@ -392,7 +447,7 @@ void mouse(int btn, int state, int x, int y)
 			 render-> r = 248;
 			 render-> g = 214;
 			 render-> b = 36;
-			 cout << render -> g << " " << render->g << " " << render->b << endl;
+			 cout << render -> r << " " << render->g << " " << render->b << endl;
 		}
 
 		else if(18*render->wh/60<x && x<20*render->wh/60 && render->wh/60<render->wh-y && render->wh-y<render->wh/20)
@@ -401,7 +456,7 @@ void mouse(int btn, int state, int x, int y)
 			 render-> r = 248;
 			 render-> g = 85;
 			 render-> b = 94;
-			 cout << render -> g << " " << render->g << " " << render->b << endl;
+			 cout << render -> r << " " << render->g << " " << render->b << endl;
 		}
 
 		else if(18*render->wh/60<x && x<20*render->wh/60 && render->wh/20<render->wh-y && render->wh-y<render->wh/12)
@@ -410,7 +465,7 @@ void mouse(int btn, int state, int x, int y)
 			render-> r = 76;
 			 render-> g = 106;
 			 render-> b = 141;
-			 cout << render -> g << " " << render->g << " " << render->b << endl;
+			 cout << render -> r << " " << render->g << " " << render->b << endl;
 		}
 
 		else if(20*render->wh/60<x && x<22*render->wh/60 && render->wh/60<render->wh-y && render->wh-y<render->wh/20)
@@ -419,7 +474,7 @@ void mouse(int btn, int state, int x, int y)
 			 render-> r = 188;
 			 render-> g = 217;
 			 render-> b = 85;
-			 cout << render -> g << " " << render->g << " " << render->b << endl;
+			 cout << render -> r << " " << render->g << " " << render->b << endl;
 		}
 
 		else if(20*render->wh/60<x && x<22*render->wh/60 && render->wh/20<render->wh-y && render->wh-y<render->wh/12)
@@ -428,7 +483,7 @@ void mouse(int btn, int state, int x, int y)
 			 render->r = 248;
 			 render->g = 214;
 			 render->b = 139;
-			 cout << render -> g << " " << render->g << " " << render->b << endl;
+			 cout << render -> r << " " << render->g << " " << render->b << endl;
 		}
 
 		else if(22*render->wh/60<x && x<24*render->wh/60 && render->wh/60<render->wh-y && render->wh-y<render->wh/20)
@@ -437,7 +492,7 @@ void mouse(int btn, int state, int x, int y)
 			 render->r = 255;
 			 render->g = 171;
 			 render->b = 69;
-			 cout << render -> g << " " << render->g << " " << render->b << endl;
+			 cout << render -> r << " " << render->g << " " << render->b << endl;
 		}
 
 		else if(22*render->wh/60<x && x<24*render->wh/60 && render->wh/20<render->wh-y && render->wh-y<render->wh/12)
@@ -446,7 +501,7 @@ void mouse(int btn, int state, int x, int y)
 			 render->r = 152;
 			 render->g = 102;
 			 render->b = 41;
-			 cout << render -> g << " " << render->g << " " << render->b << endl;
+			 cout << render -> r << " " << render->g << " " << render->b << endl;
 		}
 
 
@@ -905,13 +960,8 @@ void mouse(int btn, int state, int x, int y)
 
 		if(x>=6*render->wh/60 && x<=12*render->wh/60 && render->wh-y>=57*render->wh/60 && render->wh-y<=render->wh)  /* to OPEN an existing FILE */
 		{
-
 			save=2;
-			render->set_font(GLUT_BITMAP_9_BY_15);
-			render->set_color(0, 0, 0);
-			//drawstring(40*render->wh/60, 58*render->wh/60, 0.0, "Enter filename: ");
-			textx=60*render->wh/60;
-			texty=58*render->wh/60;
+			cargarObjetos();	
 		}
 
 
