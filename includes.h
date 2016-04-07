@@ -334,7 +334,7 @@ void mouse(int btn, int state, int x, int y)
 			render->r = 0;
 			render->b = 0;
 			render->g = 0;
-			cout << render -> r << " " << render->g << " " << render->b << endl;
+			//cout << render -> r << " " << render->g << " " << render->b << endl;
 		}
 
 		else if(6*render->wh/60<x && x<8*render->wh/60 && render->wh/20<render->wh-y && render->wh-y<render->wh/12)
@@ -343,7 +343,7 @@ void mouse(int btn, int state, int x, int y)
 			render->r = 255;
 			render->g = 255;
 			render->b = 255;
-			cout << render -> r << " " << render->g << " " << render->b << endl;
+			//cout << render -> r << " " << render->g << " " << render->b << endl;
 		}
 
 		else if(8*render->wh/60<x && x<10*render->wh/60 && render->wh/60<render->wh-y && render->wh-y<render->wh/20)
@@ -352,7 +352,7 @@ void mouse(int btn, int state, int x, int y)
 	         render-> r = 239;
 	         render-> g = 223;
 	         render-> b = 132;
-	         cout << render -> r << " " << render->g << " " << render->b << endl;
+	         //cout << render -> r << " " << render->g << " " << render->b << endl;
 		}
 
 		else if(8*render->wh/60<x && x<10*render->wh/60 && render->wh/20<render->wh-y && render->wh-y<render->wh/12)
@@ -361,7 +361,7 @@ void mouse(int btn, int state, int x, int y)
 		     render-> r = 232;
 		     render-> g = 99;
 		     render-> b = 113;
-		     cout << render -> r << " " << render->g << " " << render->b << endl;
+		     //cout << render -> r << " " << render->g << " " << render->b << endl;
 		}
 
 		else if(10*render->wh/60<x && x<12*render->wh/60 && render->wh/60<render->wh-y && render->wh-y<render->wh/20)
@@ -370,7 +370,7 @@ void mouse(int btn, int state, int x, int y)
 		     render-> r = 80;
 		     render-> g = 186;
 		     render-> b = 188;
-		     cout << render -> r << " " << render->g << " " << render->b << endl;
+		     //cout << render -> r << " " << render->g << " " << render->b << endl;
 		}
 
 		else if(10*render->wh/60<x && x<12*render->wh/60 && render->wh/20<render->wh-y && render->wh-y<render->wh/12)
@@ -379,7 +379,7 @@ void mouse(int btn, int state, int x, int y)
 		     render-> r = 161;
 		     render-> g = 185;	
 		     render-> b = 196;
-		     cout << render -> r << " " << render->g << " " << render->b << endl;
+		     //cout << render -> r << " " << render->g << " " << render->b << endl;
 		}
 
 		else if(12*render->wh/60<x && x<14*render->wh/60 && render->wh/60<render->wh-y && render->wh-y<render->wh/20)
@@ -388,7 +388,7 @@ void mouse(int btn, int state, int x, int y)
 			 render-> r = 241;
 			 render-> g = 144;
 			 render-> b = 86;
-			 cout << render -> r << " " << render->g << " " << render->b << endl;
+			 //cout << render -> r << " " << render->g << " " << render->b << endl;
 		}
 
 		else if(12*render->wh/60<x && x<14*render->wh/60 && render->wh/20<render->wh-y && render->wh-y<render->wh/12)
@@ -397,7 +397,7 @@ void mouse(int btn, int state, int x, int y)
 			 render-> r = 180;
 			 render-> g = 231;
 			 render-> b = 254;
-			 cout << render -> r << " " << render->g << " " << render->b << endl;
+			 //cout << render -> r << " " << render->g << " " << render->b << endl;
 		}
 
 		else if(14*render->wh/60<x && x<16*render->wh/60 && render->wh/60<render->wh-y && render->wh-y<render->wh/20)
@@ -406,7 +406,7 @@ void mouse(int btn, int state, int x, int y)
 			render-> r = 203;
 			 render-> g = 143;
 			 render-> b = 244;
-			 cout << render -> r << " " << render->g << " " << render->b << endl;
+			 //cout << render -> r << " " << render->g << " " << render->b << endl;
 		}
 
 		else if(14*render->wh/60<x && x<16*render->wh/60 && render->wh/20<render->wh-y && render->wh-y<render->wh/12)
@@ -415,7 +415,7 @@ void mouse(int btn, int state, int x, int y)
 			render-> r = 51;
 			 render-> g = 255;
 			 render-> b = 90;
-			 cout << render -> r << " " << render->g << " " << render->b << endl;
+			 //cout << render -> r << " " << render->g << " " << render->b << endl;
 		}
 
 		else if(16*render->wh/60<x && x<18*render->wh/60 && render->wh/60<render->wh-y && render->wh-y<render->wh/20)
@@ -424,7 +424,7 @@ void mouse(int btn, int state, int x, int y)
 			render-> r = 254;
 			 render-> g = 139;
 			 render-> b = 180;
-			 cout << render -> r << " " << render->g << " " << render->b << endl;
+			 //cout << render -> r << " " << render->g << " " << render->b << endl;
 		}
 
 		else if(16*render->wh/60<x && x<18*render->wh/60 && render->wh/20<render->wh-y && render->wh-y<render->wh/12)
@@ -433,7 +433,7 @@ void mouse(int btn, int state, int x, int y)
 			 render-> r = 248;
 			 render-> g = 214;
 			 render-> b = 36;
-			 cout << render -> r << " " << render->g << " " << render->b << endl;
+			 //cout << render -> r << " " << render->g << " " << render->b << endl;
 		}
 
 		else if(18*render->wh/60<x && x<20*render->wh/60 && render->wh/60<render->wh-y && render->wh-y<render->wh/20)
@@ -442,7 +442,7 @@ void mouse(int btn, int state, int x, int y)
 			 render-> r = 248;
 			 render-> g = 85;
 			 render-> b = 94;
-			 cout << render -> r << " " << render->g << " " << render->b << endl;
+			 //cout << render -> r << " " << render->g << " " << render->b << endl;
 		}
 
 		else if(18*render->wh/60<x && x<20*render->wh/60 && render->wh/20<render->wh-y && render->wh-y<render->wh/12)
@@ -451,7 +451,7 @@ void mouse(int btn, int state, int x, int y)
 			render-> r = 76;
 			 render-> g = 106;
 			 render-> b = 141;
-			 cout << render -> r << " " << render->g << " " << render->b << endl;
+			 //cout << render -> r << " " << render->g << " " << render->b << endl;
 		}
 
 		else if(20*render->wh/60<x && x<22*render->wh/60 && render->wh/60<render->wh-y && render->wh-y<render->wh/20)
@@ -460,7 +460,7 @@ void mouse(int btn, int state, int x, int y)
 			 render-> r = 188;
 			 render-> g = 217;
 			 render-> b = 85;
-			 cout << render -> r << " " << render->g << " " << render->b << endl;
+			 //cout << render -> r << " " << render->g << " " << render->b << endl;
 		}
 
 		else if(20*render->wh/60<x && x<22*render->wh/60 && render->wh/20<render->wh-y && render->wh-y<render->wh/12)
@@ -469,7 +469,7 @@ void mouse(int btn, int state, int x, int y)
 			 render->r = 248;
 			 render->g = 214;
 			 render->b = 139;
-			 cout << render -> r << " " << render->g << " " << render->b << endl;
+			 //cout << render -> r << " " << render->g << " " << render->b << endl;
 		}
 
 		else if(22*render->wh/60<x && x<24*render->wh/60 && render->wh/60<render->wh-y && render->wh-y<render->wh/20)
@@ -478,7 +478,7 @@ void mouse(int btn, int state, int x, int y)
 			 render->r = 255;
 			 render->g = 171;
 			 render->b = 69;
-			 cout << render -> r << " " << render->g << " " << render->b << endl;
+			 //cout << render -> r << " " << render->g << " " << render->b << endl;
 		}
 
 		else if(22*render->wh/60<x && x<24*render->wh/60 && render->wh/20<render->wh-y && render->wh-y<render->wh/12)
@@ -487,7 +487,7 @@ void mouse(int btn, int state, int x, int y)
 			 render->r = 152;
 			 render->g = 102;
 			 render->b = 41;
-			 cout << render -> r << " " << render->g << " " << render->b << endl;
+			 //cout << render -> r << " " << render->g << " " << render->b << endl;
 		}
 
 
@@ -707,12 +707,12 @@ void mouse(int btn, int state, int x, int y)
 					{
 						if(render->a3 > render->wh/10+1 && render->wh/10 < render->b3 && render->b3 < render->wh-31)
 						{
-							cout << render ->  r << " " << render->g << " " << render->b << endl;
+							//cout << render ->  r << " " << render->g << " " << render->b << endl;
 							//render->draw_triangle(render->a1,render->a2,render->a3,render->b1,render->b2,render->b3,m);
 							Triangulo triangulo(render->a1,render->a2,render->a3,render->b1,render->b2,render->b3,render->size,render->punteada, render->r, render->g, render->b);
 							v_Triangulos.push_back(triangulo);
 							render->reset();
-							cout << render ->  r << " " << render->g << " " << render->b << endl;
+							//cout << render ->  r << " " << render->g << " " << render->b << endl;
 
 							display();
 
@@ -964,7 +964,7 @@ void mouse(int btn, int state, int x, int y)
 			for(i=1;i<=n;i++)
 				render->v[i][0]=render->v[i][1]=0;
 				m=n=0;
-				count=0;
+			//	count=0;
 				render->size = 1;
 				display();
 		}
