@@ -19,42 +19,26 @@
 #include <fstream>
 #include <string>
 
- 
 #define ESPACIADO 0xeeee
 using namespace std;
 
-//GLsizei wh = 600, ww = 800,wx,wy, wx1=800, wy1=600;/*display window render->size*/
+Render *render = new Render(); /*Crear Interfaz Gráfica*/
 
-Render *render = new Render();
 
-//Triangulo *uno = new Triangulo(100, 100, 130,  130, 160, 160);
-//Triangulo *dos = new Triangulo(200, 200, 230,  230, 260, 260);
+ofstream fout;      /* Para escribir en un archivo de texto */
+ifstream in_stream; /* Para leer de un archivo de texto*/
 
-ofstream fout;
-ifstream in_stream;
-
-int draw;  /* to store draw option*/
+int draw;  /* Para saber que va a dibujar */
 int m, n;
-int pol;
 int i, j, k;
-int rr = 255, gg = 255, bb = 255; 
-
-float textx,texty, textz=0.0;
+int rr = 255, gg = 255, bb = 255; /*Color Background*/
 
 int save=0;
-int contador = 0;
 
 char* image;
 bool punteada = false;
 
-int count=0;
-int sub_menu;
-float posx, posy;
-void *currentfont;
-FILE *fptr;
-char fname[20];
-int s=0;
-int wel=2;
+//int count=0;
 
 /*Vectores*/
 vector<Triangulo> v_Triangulos;
@@ -79,9 +63,9 @@ void guardarVectores()
 
     for(unsigned int i = 0; i < v_Cuadrilateros.size(); i++){
        fout << "C " << v_Cuadrilateros.at(i).get_x1() << " " << v_Cuadrilateros.at(i).get_x2() << 
-       		 " " << v_Cuadrilateros.at(i).get_y1() << " " << v_Cuadrilateros.at(i).get_y2() << " " << v_Cuadrilateros.at(i).get_size() <<
-       		 " " << v_Cuadrilateros.at(i).get_punteada() << " " << v_Cuadrilateros.at(i).get_r() << 
-       		 " " << v_Cuadrilateros.at(i).get_g() << " " << v_Cuadrilateros.at(i).get_b() << endl;
+       		   " " << v_Cuadrilateros.at(i).get_y1() << " " << v_Cuadrilateros.at(i).get_y2() << " " << v_Cuadrilateros.at(i).get_size() <<
+       		   " " << v_Cuadrilateros.at(i).get_punteada() << " " << v_Cuadrilateros.at(i).get_r() << 
+               " " << v_Cuadrilateros.at(i).get_g() << " " << v_Cuadrilateros.at(i).get_b() << endl;
 
     }
 
@@ -116,7 +100,8 @@ void guardarVectores()
     fout.close();
 }
 
-void eraser(int x, int y)  /* ERASER function */
+/* Goma */
+void eraser(int x, int y)  
 {
 	y=render->wh-y;
 
@@ -134,7 +119,7 @@ void eraser(int x, int y)  /* ERASER function */
 	}
 }
 
-/* PAINT BRUSH function */
+/* Paint Brush */
 void paint(int x, int y) 
 {
 	y=render->wh-y;
@@ -150,7 +135,7 @@ void paint(int x, int y)
 	}
 }
 
-/* to draw point */
+/* Dibujar un punto*/
 void drawpoint(int x, int y)       
 {
 	y=render->wh-y;
@@ -165,7 +150,7 @@ void drawpoint(int x, int y)
 	}
 }
 
-/* RESHAPE FUNCTION */
+/* Cambiar Tamaño de la ventana */
 void myReshape(GLsizei w, GLsizei h) 
 {
     glMatrixMode(GL_PROJECTION);
@@ -286,7 +271,7 @@ void cargarObjetos()
 		if(identificador == "C")
 		{
 			in_stream >> xC >> xC2 >> yC >> yC2 >> s >> p >> rC >> gC >> bC;
-			cout << xC << " " << xC2 << " " << yC << " " << yC2 << " " << s << " " <<  p << " " << rC << " " << gC << " " << bC << endl;
+		//	cout << xC << " " << xC2 << " " << yC << " " << yC2 << " " << s << " " <<  p << " " << rC << " " << gC << " " << bC << endl;
 			Cuadrilatero cuadrilatero(xC, xC2, yC, yC2, s, p, rC, gC, bC);
 			v_Cuadrilateros.push_back(cuadrilatero);
 		}
@@ -294,7 +279,7 @@ void cargarObjetos()
 		if(identificador == "L")
 		{
 			in_stream >> xL1 >> xL2 >> yL1 >> yL2 >> sL >> p >> rL >> gL >> bL;
-			cout << xL1 << " " << xL2 << " " << yL1 << " " << yL2 << " " << sL << " " <<  p << " " << rL << " " << gL << " " << bL << endl;
+		//	cout << xL1 << " " << xL2 << " " << yL1 << " " << yL2 << " " << sL << " " <<  p << " " << rL << " " << gL << " " << bL << endl;
 			Linea linea(xL1, xL2, yL1, yL2, sL, p, rL, gL, bL);
 			v_Lineas.push_back(linea);
 		}
@@ -302,7 +287,7 @@ void cargarObjetos()
 		if(identificador == "P")
 		{
 			in_stream >> xP >> rX >> yP >> rY >> vP >> sP >> p >> rP >> gP >> bP;
-			cout << xP << " " << rX << " " << yP << " " << rY << " " << vP << " " <<  sP << " " << p << " " << rP << " " << gP << " " << bP << endl;
+		//	cout << xP << " " << rX << " " << yP << " " << rY << " " << vP << " " <<  sP << " " << p << " " << rP << " " << gP << " " << bP << endl;
 			Poligono poligono(xP, rX, yP, rY, vP, sP, p, rP, gP, bP);
 			v_Poligonos.push_back(poligono);
 		}
@@ -310,7 +295,7 @@ void cargarObjetos()
 		if(identificador == "CR")
 		{
 			in_stream >>  pCR >> qCR >> rCIR >> sCR >> rCR >> gCR >> bCR;
-			cout << pCR << " " << qCR << " " << rCIR << " " << sCR << " " << rCR << " " <<  gCR << " " << bCR << endl;
+		//	cout << pCR << " " << qCR << " " << rCIR << " " << sCR << " " << rCR << " " <<  gCR << " " << bCR << endl;
 			Circulo circulo(pCR, qCR, rCIR, sCR, rCR, gCR, bCR);
 			v_Circulos.push_back(circulo);
 		}
@@ -318,7 +303,7 @@ void cargarObjetos()
 		if(identificador == "T")
 		{
 			in_stream >> x1T >> x2T >> x3T >> y1T >> y2T >> y3T >> sT >> p >> rT >> gT >> bT;
-			cout << x1T << " " << x2T << " " << x3T << " " << y1T << " " << y2T << " " <<  y2T << " " << y3T << " " << sT << " " << p << " " << rT << " " << gT << " " << bT << endl;
+		//	cout << x1T << " " << x2T << " " << x3T << " " << y1T << " " << y2T << " " <<  y2T << " " << y3T << " " << sT << " " << p << " " << rT << " " << gT << " " << bT << endl;
 			Triangulo triangulo(x1T, x2T, x3T, y1T, y2T, y3T, sT, p, rT, gT, bT);
 			v_Triangulos.push_back(triangulo);
 		}
@@ -506,64 +491,64 @@ void mouse(int btn, int state, int x, int y)
 		}
 
 
-		/*end select color */
+		/*************************************Fin de paleta de colores*******************************/
 
-		/* to select render->whAT TO  DRAW */
+		/************************************ Para seleccionar***************************************/
 
-		/* selected option is PENCIL*/
+		/* Selecciona LAPIZ*/
 		if(2<x && x<render->wh/20 && 18*render->wh/20<render->wh-y && render->wh-y<render->wh-(render->wh/20)-1)                   
 			draw=1;
 
-		/* selected option is LINE */
+		/*Seleciona LINEA */
 		else if(render->wh/20<x && x<render->wh/10-2 && 18*render->wh/20<render->wh-y && render->wh-y<render->wh-(render->wh/20)-1)       
 		{
 			render->reset();
 			draw=2;
 		}
 
-		/* selected option is TRIANGLE */
+		/* Selecciona TRIANGULO */
 		else if(2<x && x<render->wh/20 && 17*render->wh/20<render->wh-y && render->wh-y<18*render->wh/20)                    
 		{
 			render->reset();
 			draw=3;
 		}
 
-		/* selected option is RECTANGLE */
+		/* Selecciona Cuadrilatero */
 		else if(render->wh/20<x && x<render->wh/10-2 && 17*render->wh/20<render->wh-y && render->wh-y<18*render->wh/20)               
 		{
 			render->reset();
 			draw=4;
 		}
 
-		/* selected option is POLYGON */
+		/* Selecciona POLIGON IRREGULAR */
 		else if(2<x && x<render->wh/20 && 16*render->wh/20<render->wh-y && render->wh-y<17*render->wh/20)                   
 		{
 			render->reset();
 			draw=5;
 		}
 
-		/* selected option is CIRCLE */
+		/* Seleciona CIRCULO */
 		else if(render->wh/20<x && x<render->wh/10-2 && 16*render->wh/20<render->wh-y && render->wh-y<17*render->wh/20)           
 		{
 			render->reset();
 			draw=6;
 		}
 
-		/* selected option is AIRBRUSH */
+		/* Selecciona AIRBRUSH */
 		else if(2<x && x<render->wh/20 && 15*render->wh/20<render->wh-y && render->wh-y<16*render->wh/20)                 
 		{
 			render->reset();
 			draw=7;
 		}
 
-		 /* selected option is ERASER */
+		 /* Selecciona Goma */
 		else if(render->wh/20<x && x<render->wh/10-2 && 15*render->wh/20<render->wh-y && render->wh-y<16*render->wh/20)               
 		{
 			render->reset();
 			draw=8;
 		}
 
-		  /* selected option is COLOR FILL */
+		  /* selecciona FILL COLOR */
 		else if(2<x && x<render->wh/20 && 14*render->wh/20<render->wh-y && render->wh-y<15*render->wh/20)                    
 		{
 
@@ -571,7 +556,7 @@ void mouse(int btn, int state, int x, int y)
 			draw=9;
 		}
 
-		/* selected option is PAINT BRUSH */
+		/* selecciona PAINT BRUSH */
 		else if(render->wh/20<x && x<render->wh/10-2 && 14*render->wh/20<render->wh-y && render->wh-y<15*render->wh/20)            
 		{
 			render->reset();
@@ -607,7 +592,7 @@ void mouse(int btn, int state, int x, int y)
 			render->lineaPunteada(true);
 		}
 
-				/*Seleccionar linea continua*/
+		/*Seleccionar linea continua*/
 		else if(2<x && x<render->wh/20 && 11*render->wh/20<render->wh-y && render->wh-y<12*render->wh/20)                    
 		{
 			render->reset();
@@ -651,7 +636,7 @@ void mouse(int btn, int state, int x, int y)
 		/*Seleccionar color background*/
 		else if(render->wh/20<x && x<render->wh/10-2 && 7*render->wh/20<render->wh-y && render->wh-y<8*render->wh/20)            
 		{
-				rr = render-> r;
+			rr = render-> r;
 			gg = render-> g;
 			bb = render-> b;
 			render->set_color_background(rr,gg,bb,255);
@@ -659,14 +644,16 @@ void mouse(int btn, int state, int x, int y)
 			
 		}
 
-		 if(draw==1)         /* to draw using a  PENCIL  */
+		/* Dibujar LAPIZ */
+		 if(draw==1)        
 		{
 			if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
 				glutMotionFunc(drawpoint);
 
 		}
 
-		 else if(draw==2)  /* to draw a LINE */
+		 /* Dibujar una LINEA */
+		 else if(draw==2)  
 		{
 
 			if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
@@ -687,7 +674,6 @@ void mouse(int btn, int state, int x, int y)
 							v_Lineas.push_back(linea);
 							render->reset();
 							display();
-							//render->draw_lines(render->a1,render->a2,punteada);
 						}
 						else
 						{
@@ -695,7 +681,6 @@ void mouse(int btn, int state, int x, int y)
 							v_Lineas.push_back(linea);
 							render->reset();
 							display();
-							//render->draw_lines(render->a1,render->a2,punteada);
 						}
 					}
 				}
@@ -704,7 +689,8 @@ void mouse(int btn, int state, int x, int y)
 		}
 
 
-		else if(draw==3)  /* to draw a TRIANGLE */
+		/* dibujar un Triangulo */
+		else if(draw==3)  
 		{
 			if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
 			{
@@ -736,7 +722,7 @@ void mouse(int btn, int state, int x, int y)
 			}
 		}
 
-		/* to draw a RECTANGLE */
+		/* Dibujar un Rectangulo */
 		else if(draw==4)  
 		{
 
@@ -751,7 +737,6 @@ void mouse(int btn, int state, int x, int y)
 				{
 					if(render->a2 > render->wh/10+1 && render->wh/10 < render->b2 && render->b2 < render->wh-31)
 					{
-						//render->draw_rectangle(render->a1,render->a2,render->b1,render->b2,m);
 						Cuadrilatero cuadrilatero(render->a1,render->a2,render->b1,render->b2,render->size,render->punteada,render->r,render->g,render->b);
 						v_Cuadrilateros.push_back(cuadrilatero);
 						render->reset();
@@ -762,10 +747,9 @@ void mouse(int btn, int state, int x, int y)
 		}
 
 
-		/* to draw a POLYGON */
+		/* Dibujar un Poligono */
 		else if(draw==5)  
 		{
-			//pol=1;
 			if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
 			{
 				render->drawpoint(x, y);
@@ -781,19 +765,19 @@ void mouse(int btn, int state, int x, int y)
 				{
 					if(render->a2>render->wh/10+1 && render->wh/10<render->b2 && render->b2<render->wh-31)
 					{
-						contador++;
+						//contador++;
 						glLineWidth(render->size);
 						glBegin(GL_LINES);
 							glVertex2f(render->a2, render->b2);
 							glVertex2f(render->a1, render->b1);
 						glEnd();
-						cout << contador << endl;
+					//	cout << contador << endl;
 					}
 				}
 			}
 		}
 
-		/* to draw a CIRCLE */
+		/* Dibujar un Circulo */
 		else if(draw==6)   
 		{
 
@@ -811,16 +795,6 @@ void mouse(int btn, int state, int x, int y)
 						r=sqrt((render->a1-render->a2)*(render->a1-render->a2)+(render->b1-render->b2)*(render->b1-render->b2));
 						Circulo circulo(render->a2,render->b2,r,render->size, render->r, render->g, render->b);
 						v_Circulos.push_back(circulo);
-						/*
-						n++;
-						render->v[n][0]=render->a2;
-						render->v[n][1]=render->b2;
-						n++;
-						render->v[n][0]=render->a1;
-						render->v[n][1]=render->b1;
-						n++;
-						render->v[n][0]='$';
-						render->v[n][1]='$';*/
 						render->reset();
 						display();
 					}
@@ -828,7 +802,7 @@ void mouse(int btn, int state, int x, int y)
 			}
 		}
 
-		/* to draw a AIRBRUSH */
+		/*AIRBRUSH */
 		else if(draw==7)  
 		{
 			if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
@@ -842,7 +816,7 @@ void mouse(int btn, int state, int x, int y)
 			}
 		}
 
-		/* to FILL A POLYGON with the selected color */
+		/* Rellenar */
 		else if(draw==9)  
 		{
 			if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
@@ -901,7 +875,7 @@ void mouse(int btn, int state, int x, int y)
 			}
 		}
 
-		/* to ERASE */
+		/* Goma */
 		if(draw==8)
 		{
 			if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
@@ -915,12 +889,11 @@ void mouse(int btn, int state, int x, int y)
 
 		}
 
-		/* to draw a Poligono */
+		/* DIbujar un Poligono */
 		else if(draw==11)  
 		{
 			if(x>render->wh/10+1 && render->wh/10<render->wh-y && render->wh-y<render->wh-31)
 			{
-				//render->drawpoint(x, y);
 				render->a2=render->a1;
 				render->b2=render->b1;
 				render->a1=x;
@@ -934,13 +907,8 @@ void mouse(int btn, int state, int x, int y)
 						{
 							Poligono poligono(render->a1, render->a2, render->b1, render->b2,render->vertices,render->size, render->punteada, render->r,render->g,render->b);
 							v_Poligonos.push_back(poligono);
-
-							//Linea linea(render->a1,render->a2,render->b1,render->b2,render->size,render->punteada);
-							//v_Lineas.push_back(linea);
-							//render->regularPolygon2(render->a1, render->a2, render->b1, render->b2);//, render->b2);
 							render->reset();
 							display();
-							//render->draw_lines(render->a1,render->a2,punteada);
 						}
 						else
 						{
@@ -948,7 +916,6 @@ void mouse(int btn, int state, int x, int y)
 							v_Poligonos.push_back(poligono);
 							render->reset();
 							display();
-							//render->draw_lines(render->a1,render->a2,punteada);
 						}
 					}
 				}
@@ -959,34 +926,32 @@ void mouse(int btn, int state, int x, int y)
 			glutMotionFunc(drawpoint);
 
 
-		if(x>=6*render->wh/60 && x<=12*render->wh/60 && render->wh-y>=57*render->wh/60 && render->wh-y<=render->wh)  /* to OPEN an existing FILE */
+		/* para Abrir vectores  */
+		if(x>=6*render->wh/60 && x<=12*render->wh/60 && render->wh-y>=57*render->wh/60 && render->wh-y<=render->wh)  
 		{
-			save=2;
+			//save=2;
 			cargarObjetos();	
 		}
 
 
-		/* to SAVE the current image onto a FILE */
+		/* Para guardar los vectores */
 		else if(x>=12*render->wh/60 && x<=18*render->wh/60 && render->wh-y>=57*render->wh/60 && render->wh-y<=render->wh)
 		{
-			save=1;
+			//save=1;
 
 			guardarVectores();
-			/*render->set_font(GLUT_BITMAP_9_BY_15);
+			render->set_font(GLUT_BITMAP_9_BY_15);
 			render->set_color(0, 0, 0);
-			textx=60*render->wh/60;
-			texty=58*render->wh/60; */
 			//guardaImagen("Imagen.tga",800,600);
 		}
 
 
-		/* to CLEAR the DRAWING AREA */
+		/* Limpiar*/
 		else if(x>=18*render->wh/60 && x<=24*render->wh/60 && render->wh-y>=57*render->wh/60 && render->wh-y<=render->wh) 
 		{
 
 			for(i=1;i<=m;i++)
 				render->a[i][0]=render->a[i][1]=0;
-
 
 			v_Lineas.clear();
 			v_Cuadrilateros.clear();
@@ -1007,21 +972,8 @@ void mouse(int btn, int state, int x, int y)
 		render->palette(render->wh/30, 2*render->wh/30, 2*render->wh/30, 2*render->wh/30, 2*render->wh/30, render->wh/30, render->wh/30, render->wh/30);  /* to display SELECTED COLOUR */
 		render->draw_btn_background();
 		glFlush();
-		glReadBuffer(GL_FRONT);
-		glReadPixels(render->wh/10+2, render->wh/10, render->ww-render->wh/10-2, render->wh-render->wh/10-render->wh/20-1,GL_RGB, GL_UNSIGNED_BYTE, image);
-		posx=render->wh/10+2;
-		posy=render->wh/10;
 
   }
-
-	if(btn==GLUT_LEFT_BUTTON && state==GLUT_UP)
-	{
-		glReadBuffer(GL_FRONT);
-		glReadPixels(render->wh/10+2, render->wh/10, render->ww-render->wh/10-2, render->wh-render->wh/10-render->wh/20-1,GL_RGB, GL_UNSIGNED_BYTE, image);
-		posx=render->wh/10+2;
-		posy=render->wh/10;
-	}
-
 }
 
 #endif
