@@ -5,7 +5,7 @@ using namespace std;
 
 Triangulo::Triangulo(){}
 
-Triangulo::Triangulo(int x1, int x2, int x3, int y1, int y2, int y3, int size, bool punteada)
+Triangulo::Triangulo(int x1, int x2, int x3, int y1, int y2, int y3, int size, bool punteada, int r, int g, int b)
 {
 	this-> x1 = x1;
 	this-> x2 = x2;
@@ -15,6 +15,9 @@ Triangulo::Triangulo(int x1, int x2, int x3, int y1, int y2, int y3, int size, b
 	this-> y3 = y3;
 	this-> size = size;
 	this-> punteada = punteada;
+	this-> r = r;
+	this-> g = g;
+	this-> b = b;
 }
 
 Triangulo::~Triangulo()
@@ -22,6 +25,7 @@ Triangulo::~Triangulo()
 	cout << "Triangulo creado en: " << endl;
 	cout << "(" << x1 << "," << y1 << ")\n(" << x2 << "," << y2 << ")\n(" << x3 << "," << y3 << ")" << endl;
 	cout << "Size: " << size << " Punteada: " << punteada << endl;
+	cout << "RGB; " << r <<","<< g<< ","<< b;
     cout << "Triangulo eliminado" << endl << endl;
 }
 
@@ -39,8 +43,10 @@ void Triangulo::dibujaTriangulo()
 {
 	if(punteada)
 	{
+		
 		glLineStipple(3,0xeeee);  
 		glEnable(GL_LINE_STIPPLE);
+		glColor3f(r/255, g/255, b/255);
 		glLineWidth(size);
 		glBegin(GL_LINE_LOOP);
 			glVertex2f(x3, y3);
@@ -51,6 +57,7 @@ void Triangulo::dibujaTriangulo()
 	}
 	else
 	{	
+		glColor3f(r/255, g/255, b/255);
 		glLineWidth(size);
 		glBegin(GL_LINE_LOOP);
 			glVertex2f(x3, y3);

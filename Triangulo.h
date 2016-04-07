@@ -8,10 +8,11 @@ class Triangulo
 private:
 	int x1, x2, x3;
 	int y1, y2, y3;
+	int r,g,b;
 	int size;
 	bool punteada;
 public:
-	Triangulo(int,int,int,int,int,int,int,bool);
+	Triangulo(int,int,int,int,int,int,int,bool,int,int,int);
 	Triangulo();
 	~Triangulo();
 	void set_coords(int, int, int, int, int, int);

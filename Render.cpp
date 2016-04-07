@@ -22,6 +22,9 @@ Render::Render()
 	flag = 0;
 	a1 = a2 = a3 = b1 = b2 = b3 = 0;
 	punteada = false;
+	r = 255;
+	g = 255;
+	b = 255;
 }	
 
 
@@ -39,6 +42,9 @@ int Render::get_ww()
 void Render::reset()
 {
 	a1 = a2 = a3 = b1 = b2 = b3 = 0;
+	r = r;
+	g = g;
+	b = b;
 }
 
 void Render::set_ww(int ww)
@@ -758,6 +764,11 @@ void Render::draw_btn_show_vertex()
 void Render::draw_btn_poligono()
 {
 	regularPolygon(6.0*wh/120, 8.5*wh/20,10);
+}
+
+void Render::draw_btn_background()
+{
+	palette(wh/30, 10.8*wh/30,2*wh/30, 10.8*wh/30, 2*wh/30, 11.8*wh/30, wh/30, 11.8*wh/30); 
 }
 
 void Render::regularPolygon(int x, int y, int radius)

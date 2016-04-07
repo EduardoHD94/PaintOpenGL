@@ -21,12 +21,12 @@ public:
 	bool punteada;
 	void *currentFont;
 	
-//
+	int r, g, b;
 	int size, vertices;
 	int fill;
 	int flag, flag1;
 	float a1, a2, a3, b1, b2, b3;
-	float a[100][2], b[100][2];
+	float a[100][2], v[100][2];
 	Render();
 	~Render();
 	int get_ww();
@@ -81,6 +81,7 @@ public:
 	void draw_btn_show_size();
 	void draw_btn_show_vertex();
 	void draw_btn_poligono();
+	void draw_btn_background();
 	void regularPolygon(int, int, int);
 	void regularPolygon2(int, int, int, int);
 	void draw_size();
