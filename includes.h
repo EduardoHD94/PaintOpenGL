@@ -64,7 +64,7 @@ void eraser(int x, int y)  /* ERASER function */
 {
 	y=render->wh-y;
 
-	//render->set_color(255, 255, 255);
+	render->set_color(255, 255, 255);
 
 	if(x>render->wh/10+1 && render->wh/10<y && y<render->wh-31)
 	{
@@ -148,7 +148,7 @@ void display()
 {
 
 	system("clear");
-	//render->set_color_background(render->r,render->g,render->b,255);
+	render->set_color_background(render->r,render->g,render->b,255);
 	render->draw_toolbar();
 	render->draw_palette();
 	render->draw_toolbox();
@@ -220,7 +220,7 @@ void mouse(int btn, int state, int x, int y)
 
 		if(6*render->wh/60<x && x<8*render->wh/60 && render->wh/60<render->wh-y && render->wh-y<render->wh/20)
 		{	
-			//render->set_color(0, 0, 0);
+			render->set_color(0, 0, 0);
 			render->r = 0;
 			render->b = 0;
 			render->g = 0;
@@ -228,7 +228,7 @@ void mouse(int btn, int state, int x, int y)
 
 		else if(6*render->wh/60<x && x<8*render->wh/60 && render->wh/20<render->wh-y && render->wh-y<render->wh/12)
 		{
-			//render->set_color(255, 255, 255);
+			render->set_color(255, 255, 255);
 			render->r = 255;
 			render->g = 255;
 			render->b = 255;
@@ -236,7 +236,7 @@ void mouse(int btn, int state, int x, int y)
 
 		else if(8*render->wh/60<x && x<10*render->wh/60 && render->wh/60<render->wh-y && render->wh-y<render->wh/20)
 		{
-	         //render->set_color(239, 223, 132);
+	         render->set_color(239, 223, 132);
 	         render-> r = 239;
 	         render-> g = 223;
 	         render-> b = 132;
@@ -244,7 +244,7 @@ void mouse(int btn, int state, int x, int y)
 
 		else if(8*render->wh/60<x && x<10*render->wh/60 && render->wh/20<render->wh-y && render->wh-y<render->wh/12)
 		{
-		     //render->set_color(232, 99, 113);
+		     render->set_color(232, 99, 113);
 		     render-> r = 232;
 		     render-> g = 99;
 		     render-> b = 113;
@@ -252,7 +252,7 @@ void mouse(int btn, int state, int x, int y)
 
 		else if(10*render->wh/60<x && x<12*render->wh/60 && render->wh/60<render->wh-y && render->wh-y<render->wh/20)
 		{
-		     //render->set_color(80, 186, 188);
+		     render->set_color(80, 186, 188);
 		     render-> r = 80;
 		     render-> g = 186;
 		     render-> b = 188;
@@ -260,7 +260,7 @@ void mouse(int btn, int state, int x, int y)
 
 		else if(10*render->wh/60<x && x<12*render->wh/60 && render->wh/20<render->wh-y && render->wh-y<render->wh/12)
 		{
-		     //render->set_color(161, 185, 196);
+		     render->set_color(161, 185, 196);
 		     render-> r = 161;
 		     render-> g = 185;
 		     render-> b = 196;
@@ -268,7 +268,7 @@ void mouse(int btn, int state, int x, int y)
 
 		else if(12*render->wh/60<x && x<14*render->wh/60 && render->wh/60<render->wh-y && render->wh-y<render->wh/20)
 		{
-			 //render->set_color(241, 144, 86);
+			 render->set_color(241, 144, 86);
 			 render-> r = 241;
 			 render-> g = 144;
 			 render-> b = 86;
@@ -276,7 +276,7 @@ void mouse(int btn, int state, int x, int y)
 
 		else if(12*render->wh/60<x && x<14*render->wh/60 && render->wh/20<render->wh-y && render->wh-y<render->wh/12)
 		{
-		     //render->set_color(180, 231, 254);
+		     render->set_color(180, 231, 254);
 			 render-> r = 180;
 			 render-> g = 231;
 			 render-> b = 254;
@@ -284,7 +284,7 @@ void mouse(int btn, int state, int x, int y)
 
 		else if(14*render->wh/60<x && x<16*render->wh/60 && render->wh/60<render->wh-y && render->wh-y<render->wh/20)
 		{
-			 //render->set_color(203, 143, 244);
+			 render->set_color(203, 143, 244);
 			render-> r = 203;
 			 render-> g = 143;
 			 render-> b = 244;
@@ -292,7 +292,7 @@ void mouse(int btn, int state, int x, int y)
 
 		else if(14*render->wh/60<x && x<16*render->wh/60 && render->wh/20<render->wh-y && render->wh-y<render->wh/12)
 		{
-			 //render->set_color(51, 255, 90);
+			 render->set_color(51, 255, 90);
 			render-> r = 51;
 			 render-> g = 255;
 			 render-> b = 90;
@@ -300,7 +300,7 @@ void mouse(int btn, int state, int x, int y)
 
 		else if(16*render->wh/60<x && x<18*render->wh/60 && render->wh/60<render->wh-y && render->wh-y<render->wh/20)
 		{
-			 //render->set_color(254, 139, 180);
+			 render->set_color(254, 139, 180);
 			render-> r = 254;
 			 render-> g = 139;
 			 render-> b = 180;
@@ -308,7 +308,7 @@ void mouse(int btn, int state, int x, int y)
 
 		else if(16*render->wh/60<x && x<18*render->wh/60 && render->wh/20<render->wh-y && render->wh-y<render->wh/12)
 		{
-			 //render->set_color(248, 214, 36);
+			 render->set_color(248, 214, 36);
 			 render-> r = 248;
 			 render-> g = 214;
 			 render-> b = 36;
@@ -316,7 +316,7 @@ void mouse(int btn, int state, int x, int y)
 
 		else if(18*render->wh/60<x && x<20*render->wh/60 && render->wh/60<render->wh-y && render->wh-y<render->wh/20)
 		{
-			 //render->set_color(248, 85, 94);
+			 render->set_color(248, 85, 94);
 			 render-> r = 248;
 			 render-> g = 85;
 			 render-> b = 94;
@@ -324,7 +324,7 @@ void mouse(int btn, int state, int x, int y)
 
 		else if(18*render->wh/60<x && x<20*render->wh/60 && render->wh/20<render->wh-y && render->wh-y<render->wh/12)
 		{
-			//render->set_color(76, 106, 141);
+			render->set_color(76, 106, 141);
 			render-> r = 76;
 			 render-> g = 106;
 			 render-> b = 141;
@@ -332,7 +332,7 @@ void mouse(int btn, int state, int x, int y)
 
 		else if(20*render->wh/60<x && x<22*render->wh/60 && render->wh/60<render->wh-y && render->wh-y<render->wh/20)
 		{
-			 //render->set_color(188, 217, 85);
+			 render->set_color(188, 217, 85);
 			 render-> r = 188;
 			 render-> g = 217;
 			 render-> b = 85;
@@ -340,7 +340,7 @@ void mouse(int btn, int state, int x, int y)
 
 		else if(20*render->wh/60<x && x<22*render->wh/60 && render->wh/20<render->wh-y && render->wh-y<render->wh/12)
 		{
-			 //render->set_color(248, 214, 139);
+			 render->set_color(248, 214, 139);
 			 render->r = 248;
 			 render->g = 214;
 			 render->b = 139;
@@ -348,7 +348,7 @@ void mouse(int btn, int state, int x, int y)
 
 		else if(22*render->wh/60<x && x<24*render->wh/60 && render->wh/60<render->wh-y && render->wh-y<render->wh/20)
 		{
-			 //render->set_color(255, 171, 69);
+			 render->set_color(255, 171, 69);
 			 render->r = 255;
 			 render->g = 171;
 			 render->b = 69;
@@ -356,7 +356,7 @@ void mouse(int btn, int state, int x, int y)
 
 		else if(22*render->wh/60<x && x<24*render->wh/60 && render->wh/20<render->wh-y && render->wh-y<render->wh/12)
 		{
-			 //render->set_color(152, 102, 41);
+			 render->set_color(152, 102, 41);
 			 render->r = 152;
 			 render->g = 102;
 			 render->b = 41;
@@ -811,7 +811,7 @@ void mouse(int btn, int state, int x, int y)
 
 			save=2;
 			render->set_font(GLUT_BITMAP_9_BY_15);
-			//render->set_color(0, 0, 0);
+			render->set_color(0, 0, 0);
 			//drawstring(40*render->wh/60, 58*render->wh/60, 0.0, "Enter filename: ");
 			textx=60*render->wh/60;
 			texty=58*render->wh/60;
@@ -824,7 +824,7 @@ void mouse(int btn, int state, int x, int y)
 			save=1;
 
 			/*render->set_font(GLUT_BITMAP_9_BY_15);
-			//render->set_color(0, 0, 0);
+			render->set_color(0, 0, 0);
 			textx=60*render->wh/60;
 			texty=58*render->wh/60; */
 			//guardaImagen("Imagen.tga",800,600);
