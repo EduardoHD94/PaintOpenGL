@@ -67,6 +67,7 @@ vector<Poligono> v_Poligonos;
 
 void guardarVectores()
 {
+	system("> Vectores.txt");
     fout.open("Vectores.txt", ios::app); //escribe sobre el archivo no borra lo anterior
 
     if(fout.fail())
